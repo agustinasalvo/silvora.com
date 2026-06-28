@@ -1,0 +1,44 @@
+/* SILVORA · Brand Tokens */
+:root {
+  --navy:      #1F2A44;
+  --teal:      #3E8E8A;
+  --coral:     #E58D73;
+  --silver:    #C8CCD1;
+  --cream:     #F2E8DA;
+  --bg:        #F7F4EF;
+  --white:     #FFFFFF;
+  --muted:     #6B7483;
+  --border:    rgba(31,42,68,0.10);
+  --border-md: rgba(31,42,68,0.16);
+  --overlay:   rgba(255,255,255,0.14);
+  --overlay-md:rgba(255,255,255,0.26);
+
+  --font-sans:  'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+
+  --h1:   clamp(2.75rem, 1.8rem + 5vw,   7rem);
+  --h2:   clamp(1.875rem,1.4rem + 2.5vw, 3.5rem);
+  --h3:   clamp(1.25rem, 1.05rem + 1vw,  1.875rem);
+  --lead: clamp(1.0625rem,0.95rem + 0.5vw,1.25rem);
+  --body: clamp(0.9375rem,0.875rem + 0.25vw,1.0625rem);
+  --sm:   0.875rem;
+  --xs:   0.75rem;
+
+  --gutter:    clamp(1.25rem, 5vw, 4rem);
+  --section:   clamp(4rem,   10vw, 9rem);
+  --section-sm:clamp(2.5rem,  6vw, 5rem);
+  --max:       1280px;
+  --max-sm:    680px;
+
+  --radius-sm: 4px;
+  --radius:    8px;
+  --radius-lg: 16px;
+  --radius-full:9999px;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --t:    300ms;
+  --t-slow: 700ms;
+
+  --shadow:    0 4px 24px rgba(31,42,68,0.08);
+  --shadow-lg: 0 16px 56px rgba(31,42,68,0.10);
+}
