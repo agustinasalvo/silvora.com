@@ -473,3 +473,64 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   height: 28px;
   width: auto;
 }
+
+
+/* Silvora bug fixes: logo visibility, contrast, full screen sections and responsive behavior */
+.nav__logo-img {
+  height: clamp(48px, 4.8vw, 72px) !important;
+  max-width: 230px !important;
+}
+.nav.scrolled .nav__logo-img {
+  height: clamp(44px, 4.2vw, 64px) !important;
+}
+.nav__mobile-logo {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+}
+.nav.scrolled .btn--light,
+.nav:not(.nav--dark) .btn--light {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.nav.scrolled .btn--light:hover,
+.nav:not(.nav--dark) .btn--light:hover {
+  background: var(--teal-dim);
+  border-color: var(--teal-dim);
+}
+.page-hero {
+  min-height: 100svh !important;
+  padding-top: clamp(7rem, 12vw, 9rem) !important;
+  padding-bottom: clamp(3rem, 6vw, 5rem) !important;
+  justify-content: center !important;
+}
+.page-hero .wrap,
+.hero .wrap { position: relative; z-index: 1; }
+section { scroll-margin-top: 90px; }
+.nav__inner { min-height: 58px; }
+.nav.scrolled .nav__inner { min-height: 52px; }
+html, body { max-width: 100%; overflow-x: hidden; }
+@media (max-width: 900px) {
+  .page-hero { min-height: 100svh !important; }
+  .page-hero__bg svg { right: -35%; top: 7%; width: 110%; }
+  .page-hero__title { max-width: 100%; }
+  .page-hero__lead { max-width: 100%; }
+}
+@media (max-width: 768px) {
+  .nav { padding-block: 0.7rem; }
+  .nav__logo-img { height: 46px !important; max-width: 180px !important; }
+  .nav__mobile { top: 74px; overflow-y: auto; }
+  .hero, .page-hero { padding-inline: 0; }
+  .hero__content { max-width: 100%; }
+  .hero__actions { width: 100%; }
+  .hero__actions .btn { width: 100%; justify-content: center; }
+  .btn { max-width: 100%; white-space: normal; text-align: center; }
+  .footer__bottom { align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .nav__logo-img { height: 42px !important; max-width: 165px !important; }
+  .nav__inner { gap: 0.75rem; }
+  .page-hero { padding-top: 6.5rem !important; }
+  .page-hero__title, .hero__headline { word-break: normal; overflow-wrap: break-word; }
+}
