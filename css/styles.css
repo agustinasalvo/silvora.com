@@ -534,3 +534,137 @@ html, body { max-width: 100%; overflow-x: hidden; }
   .page-hero { padding-top: 6.5rem !important; }
   .page-hero__title, .hero__headline { word-break: normal; overflow-wrap: break-word; }
 }
+
+
+/* Final Silvora fixes */
+.nav__logo-img,
+.nav__mobile-brand img {
+  filter: none !important;
+  object-fit: contain;
+}
+.nav__logo-img {
+  height: clamp(48px, 4.2vw, 62px) !important;
+  width: auto !important;
+  max-width: 240px !important;
+}
+.nav.scrolled .nav__logo-img {
+  height: clamp(44px, 3.8vw, 56px) !important;
+}
+.nav__inner { min-height: 72px; }
+.nav.scrolled .nav__inner { min-height: 64px; }
+.nav--dark:not(.scrolled) .btn--light {
+  background: rgba(255,255,255,0.14);
+  color: var(--white);
+  border-color: rgba(255,255,255,0.35);
+}
+.nav.scrolled .btn--light,
+.nav:not(.nav--dark) .btn--light,
+body:not(.dark) .nav .btn--light {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+  border-color: var(--navy) !important;
+  box-shadow: 0 6px 18px rgba(31,42,68,0.16);
+}
+.nav.scrolled .btn--light:hover,
+.nav:not(.nav--dark) .btn--light:hover {
+  background: var(--teal-dim) !important;
+  border-color: var(--teal-dim) !important;
+}
+@media (max-width: 900px) {
+  .nav__logo-img { height: 44px !important; max-width: 190px !important; }
+  .nav__inner { min-height: 58px; }
+}
+@media (max-width: 520px) {
+  .nav__logo-img { height: 38px !important; max-width: 160px !important; }
+}
+
+/* Final requested bug fixes */
+/* Use the provided SVG logo on dark navy backgrounds and the color logo on light/beige backgrounds */
+.nav--dark:not(.scrolled) .nav__logo-img {
+  content: url('../assets/silvora-logo-dark-bg.svg');
+  filter: none !important;
+}
+.nav.scrolled .nav__logo-img,
+.nav:not(.nav--dark) .nav__logo-img {
+  content: url('../assets/silvora-logo.png');
+  filter: none !important;
+}
+
+/* Dark navy navbar CTA needs a visible beige capsule */
+.nav--dark:not(.scrolled) .btn--light {
+  background: rgba(242,232,218,0.18) !important;
+  color: var(--cream) !important;
+  border-color: rgba(242,232,218,0.72) !important;
+  box-shadow: inset 0 0 0 1px rgba(242,232,218,0.18), 0 8px 24px rgba(0,0,0,0.12);
+}
+.nav--dark:not(.scrolled) .btn--light:hover {
+  background: rgba(242,232,218,0.28) !important;
+  border-color: var(--cream) !important;
+}
+
+/* Home framework list: leave breathing room between the left accent line and numbers */
+.dimensions__list { overflow: hidden; }
+.dim {
+  padding-left: clamp(1.75rem, 3vw, 2.75rem) !important;
+  grid-template-columns: minmax(72px, 92px) 1fr auto !important;
+}
+.dim::before { left: 0.25rem !important; }
+@media (max-width: 700px) {
+  .dim {
+    padding-left: 1.25rem !important;
+    grid-template-columns: 58px 1fr !important;
+  }
+  .dim__arrow { grid-column: 2; }
+}
+
+
+/* Silvora editorial image system */
+.image-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--cream);
+  box-shadow: 0 18px 50px rgba(31, 42, 68, 0.14);
+}
+.image-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease);
+}
+.image-card:hover img { transform: scale(1.02); }
+.image-card--hero { aspect-ratio: 4 / 5; max-height: 660px; }
+.image-card--wide { aspect-ratio: 16 / 10; }
+.image-card--portrait { aspect-ratio: 4 / 5; }
+.hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.hero__media { position: relative; z-index: 2; justify-self: end; width: 100%; max-width: 560px; }
+.hero__media .image-card { border: 1px solid rgba(247,244,239,0.18); box-shadow: 0 24px 70px rgba(0,0,0,0.24); }
+.media-section { padding-block: clamp(3rem, 7vw, 6.5rem); }
+.media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+.media-copy { max-width: 620px; }
+@media (max-width: 1080px) {
+  .hero__layout { grid-template-columns: 1fr; }
+  .hero__media { order: 2; justify-self: center; max-width: 680px; margin-top: 1.5rem; }
+  .hero__content { order: 1; }
+  .image-card--hero { aspect-ratio: 16 / 10; max-height: 420px; }
+}
+@media (max-width: 960px) {
+  .media-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .image-card { border-radius: 18px; }
+  .media-section { padding-block: 2.75rem; }
+}
