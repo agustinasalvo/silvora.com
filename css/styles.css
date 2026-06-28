@@ -163,15 +163,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   left: 0;
   right: 0;
   bottom: 0;
-  /* z-index 9999: encima de absolutamente todo */
   z-index: 9999;
   background: var(--bg);
-  padding: 5rem var(--gutter) 2rem;
+  /* padding-top = altura del nav para que los links no queden tapados */
+  padding: 80px var(--gutter) 2rem;
   flex-direction: column;
   gap: 0;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
-  /* Evita que el contenido debajo sea interactivo */
   pointer-events: none;
 }
 .nav__mobile.open {
