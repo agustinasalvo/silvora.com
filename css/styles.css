@@ -133,57 +133,18 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nav__toggle.open span:nth-child(2) { opacity: 0; }
 .nav__toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 .nav__mobile {
-  /* Panel cubre TODO el viewport — igual que menú de referencia */
   display: none;
   position: fixed;
-  inset: 0;                          /* top:0 left:0 right:0 bottom:0 */
-  z-index: 9999;                     /* encima de absolutamente todo   */
+  top: 0; left: 0; right: 0; bottom: 0;
   background: var(--bg);
   flex-direction: column;
   gap: 0;
+  z-index: 9999;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  padding: 80px var(--gutter) 2rem;
 }
 .nav__mobile.open { display: flex; }
-/* ── Mobile panel: barra superior con logo ── */
-/* El nav original (68px) queda encima del panel porque el JS
-   mueve el panel al body. Para replicar el look de referencia,
-   el panel tiene su propio header interno. */
-.nav__mobile-topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 var(--gutter);
-  height: 68px;
-  background: var(--navy);
-  flex-shrink: 0;
-}
-.nav__mobile-topbar img {
-  height: 36px;
-  width: auto;
-  filter: brightness(0) invert(1);
-}
-.nav__mobile-close {
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(247,244,239,0.7);
-  font-size: 1.5rem;
-  cursor: pointer;
-  background: none;
-  border: none;
-  font-family: var(--font-sans);
-}
-.nav__mobile-close:hover { color: #fff; }
-.nav__mobile-body {
-  padding: 1.5rem var(--gutter) 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  flex: 1;
-}
 .nav__mobile-link {
   font-size: 1.5rem; font-weight: 600; color: var(--navy);
   padding-block: 0.875rem; border-bottom: 1px solid var(--border);
@@ -526,7 +487,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 
 /* Mobile nav brand */
 .nav__mobile-brand {
-  padding-top: 1.25rem;              /* espacio sobre el logo            */
   padding-bottom: 1.25rem;
   margin-bottom: 0.5rem;
   border-bottom: 1px solid var(--border);
@@ -579,7 +539,7 @@ html, body { max-width: 100%; overflow-x: hidden; }
 @media (max-width: 768px) {
   .nav { padding-block: 0.7rem; }
   .nav__logo-img { height: 36px !important; max-width: 170px !important; }
-  /* nav__mobile: top handled by inset:0 */
+  /* nav__mobile uses inset:0, no override needed */
   .hero, .page-hero { padding-inline: 0; }
   .hero__content { max-width: 100%; }
   .hero__actions { width: 100%; }
