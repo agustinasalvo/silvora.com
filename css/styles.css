@@ -47,45 +47,29 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ── Navigation ── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  /* Fixed height — never changes on scroll, zero layout shift */
-  height: 68px;
-  display: flex;
-  align-items: center;
-  transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease);
-  /* On dark hero pages: start with a subtle navy overlay so content is readable */
-  background: transparent;
+  padding-block: 1rem;
+  transition: background var(--t) var(--ease), padding var(--t) var(--ease), box-shadow var(--t) var(--ease);
 }
-
-/* Dark hero variant — solid enough to read as nav, subtle enough to feel premium */
-.nav--dark {
-  background: rgba(20, 28, 48, 0.75);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-}
-
 /* On dark hero: links are light */
 .nav--dark .nav__link,
 .nav--dark .nav__wordmark { color: var(--nav-link); }
 .nav--dark .nav__tagline { color: var(--teal); }
 .nav--dark .nav__toggle span { background: var(--nav-link); }
 
-/* Scrolled state — same height, just change background & shadow */
 .nav.scrolled {
-  background: rgba(247, 244, 239, 0.97) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(247,244,239,0.96);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  padding-block: 0.75rem;
   box-shadow: 0 1px 0 var(--border), 0 2px 16px rgba(31,42,68,0.06);
 }
-/* After scroll: restore dark links regardless of page */
+/* After scroll: restore dark links */
 .nav.scrolled .nav__link,
-.nav.scrolled .nav__wordmark { color: var(--navy) !important; }
-.nav.scrolled .nav__tagline { color: var(--teal) !important; }
-.nav.scrolled .nav__toggle span { background: var(--navy) !important; }
+.nav.scrolled .nav__wordmark { color: var(--navy); }
+.nav.scrolled .nav__tagline { color: var(--teal); }
+.nav.scrolled .nav__toggle span { background: var(--navy); }
 
-.nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 100%; width: 100%; }
-/* Nav wrap must fill height for inner to stretch */
-.nav > .wrap { height: 100%; display: flex; align-items: center; }
+.nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; }
 .nav__logo { display: flex; align-items: center; gap: 0.575rem; text-decoration: none; flex-shrink: 0; }
 .nav__logo-text { display: flex; flex-direction: column; }
 .nav__wordmark { font-family: var(--font-sans); font-size: 1.125rem; font-weight: 700; letter-spacing: 0.14em; color: var(--navy); line-height: 1; transition: color var(--t) var(--ease); }
@@ -133,7 +117,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 .nav__toggle.open span:nth-child(2) { opacity: 0; }
 .nav__toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 .nav__mobile {
-  display: none; position: fixed; inset: 0; top: 68px;
+  display: none; position: fixed; inset: 0; top: 64px;
   background: var(--bg); padding: 1.5rem var(--gutter) 2rem;
   flex-direction: column; gap: 0; z-index: 199;
   border-top: 1px solid var(--border);
@@ -491,10 +475,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 }
 
 
-/* Logo: fixed size, never changes on scroll */
+/* Silvora bug fixes: logo visibility, contrast, full screen sections and responsive behavior */
 .nav__logo-img {
-  height: 40px !important;
-  max-width: 200px !important;
+  height: clamp(48px, 4.8vw, 72px) !important;
+  max-width: 230px !important;
+}
+.nav.scrolled .nav__logo-img {
+  height: clamp(44px, 4.2vw, 64px) !important;
 }
 .nav__mobile-logo {
   height: 46px;
@@ -532,8 +519,8 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 @media (max-width: 768px) {
   .nav { padding-block: 0.7rem; }
-  .nav__logo-img { height: 36px !important; max-width: 170px !important; }
-  .nav__mobile { top: 68px; overflow-y: auto; }
+  .nav__logo-img { height: 46px !important; max-width: 180px !important; }
+  .nav__mobile { top: 74px; overflow-y: auto; }
   .hero, .page-hero { padding-inline: 0; }
   .hero__content { max-width: 100%; }
   .hero__actions { width: 100%; }
@@ -542,25 +529,57 @@ html, body { max-width: 100%; overflow-x: hidden; }
   .footer__bottom { align-items: flex-start; }
 }
 @media (max-width: 480px) {
-  .nav__logo-img { height: 32px !important; max-width: 150px !important; }
+  .nav__logo-img { height: 42px !important; max-width: 165px !important; }
   .nav__inner { gap: 0.75rem; }
   .page-hero { padding-top: 6.5rem !important; }
   .page-hero__title, .hero__headline { word-break: normal; overflow-wrap: break-word; }
 }
 
 
-/* ── NAV: definitive overrides (single source of truth) ─────── */
-
-/* Logo: same size always, never shifts */
-.nav__logo-img {
-  height: 40px !important;
-  width: auto !important;
-  max-width: 200px !important;
+/* Final Silvora fixes */
+.nav__logo-img,
+.nav__mobile-brand img {
+  filter: none !important;
   object-fit: contain;
-  display: block;
+}
+.nav__logo-img {
+  height: clamp(48px, 4.2vw, 62px) !important;
+  width: auto !important;
+  max-width: 240px !important;
+}
+.nav.scrolled .nav__logo-img {
+  height: clamp(44px, 3.8vw, 56px) !important;
+}
+.nav__inner { min-height: 72px; }
+.nav.scrolled .nav__inner { min-height: 64px; }
+.nav--dark:not(.scrolled) .btn--light {
+  background: rgba(255,255,255,0.14);
+  color: var(--white);
+  border-color: rgba(255,255,255,0.35);
+}
+.nav.scrolled .btn--light,
+.nav:not(.nav--dark) .btn--light,
+body:not(.dark) .nav .btn--light {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+  border-color: var(--navy) !important;
+  box-shadow: 0 6px 18px rgba(31,42,68,0.16);
+}
+.nav.scrolled .btn--light:hover,
+.nav:not(.nav--dark) .btn--light:hover {
+  background: var(--teal-dim) !important;
+  border-color: var(--teal-dim) !important;
+}
+@media (max-width: 900px) {
+  .nav__logo-img { height: 44px !important; max-width: 190px !important; }
+  .nav__inner { min-height: 58px; }
+}
+@media (max-width: 520px) {
+  .nav__logo-img { height: 38px !important; max-width: 160px !important; }
 }
 
-/* Logo color version: dark pages → white logo, light pages → color logo */
+/* Final requested bug fixes */
+/* Use the provided SVG logo on dark navy backgrounds and the color logo on light/beige backgrounds */
 .nav--dark:not(.scrolled) .nav__logo-img {
   content: url('/silvora.com/assets/silvora-logo-dark-bg.svg');
   filter: none !important;
@@ -571,42 +590,16 @@ html, body { max-width: 100%; overflow-x: hidden; }
   filter: none !important;
 }
 
-/* "Get started" CTA button
-   On navy hero  → solid cream/sand capsule with navy text (max contrast)
-   On beige/scroll → solid navy capsule with white text               */
+/* Dark navy navbar CTA needs a visible beige capsule */
 .nav--dark:not(.scrolled) .btn--light {
-  background: var(--cream) !important;
-  color: var(--navy) !important;
-  border: 1.5px solid var(--cream) !important;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.20) !important;
-  font-weight: 700 !important;
+  background: rgba(242,232,218,0.18) !important;
+  color: var(--cream) !important;
+  border-color: rgba(242,232,218,0.72) !important;
+  box-shadow: inset 0 0 0 1px rgba(242,232,218,0.18), 0 8px 24px rgba(0,0,0,0.12);
 }
 .nav--dark:not(.scrolled) .btn--light:hover {
-  background: #fff !important;
-  border-color: #fff !important;
-  transform: translateY(-1px);
-}
-.nav.scrolled .btn--light,
-.nav:not(.nav--dark) .btn--light {
-  background: var(--navy) !important;
-  color: #fff !important;
-  border-color: var(--navy) !important;
-  box-shadow: 0 4px 14px rgba(31,42,68,0.18) !important;
-  font-weight: 700 !important;
-}
-.nav.scrolled .btn--light:hover,
-.nav:not(.nav--dark) .btn--light:hover {
-  background: var(--teal) !important;
-  border-color: var(--teal) !important;
-  transform: translateY(-1px);
-}
-
-/* Responsive logo sizes */
-@media (max-width: 900px) {
-  .nav__logo-img { height: 36px !important; max-width: 180px !important; }
-}
-@media (max-width: 520px) {
-  .nav__logo-img { height: 32px !important; max-width: 155px !important; }
+  background: rgba(242,232,218,0.28) !important;
+  border-color: var(--cream) !important;
 }
 
 /* Home framework list: leave breathing room between the left accent line and numbers */
