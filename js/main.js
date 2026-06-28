@@ -1,152 +1,677 @@
-/* SILVORA fixed main.js */
-const nav = document.querySelector('.nav');
-const navToggle = document.querySelector('.nav__toggle');
-const navMobile = document.querySelector('.nav__mobile');
+/* SILVORA · Master Stylesheet v2 */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap');
+@import 'variables.css';
 
-window.addEventListener('scroll', () => {
-  nav?.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+body { font-family: var(--font-sans); font-size: var(--body); line-height: 1.65; color: var(--navy); background: var(--bg); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul, ol { list-style: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; }
 
-function closeMobileMenu() {
-  navToggle?.classList.remove('open');
-  navMobile?.classList.remove('open');
-  document.body.style.overflow = '';
-  navToggle?.setAttribute('aria-expanded', 'false');
+/* ── Layout ── */
+.wrap { width: 100%; max-width: var(--max); margin-inline: auto; padding-inline: var(--gutter); }
+.wrap--sm { max-width: var(--max-sm); }
+.section { padding-block: var(--section); }
+.section--sm { padding-block: var(--section-sm); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem,5vw,5rem); align-items: start; }
+.grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: clamp(1.25rem,2.5vw,2rem); }
+.grid-4 { display: grid; grid-template-columns: repeat(4,1fr); gap: clamp(1rem,1.5vw,1.25rem); }
+.grid-auto { display: grid; grid-template-columns: repeat(auto-fit,minmax(min(260px,100%),1fr)); gap: clamp(1.25rem,2.5vw,2rem); }
+
+/* ── Typography ── */
+.eyebrow { display: inline-flex; align-items: center; gap: 0.625rem; font-size: var(--xs); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); }
+.eyebrow::before { content: ''; display: block; width: 1.25rem; height: 1.5px; background: var(--copper); flex-shrink: 0; }
+.eyebrow--center { flex-direction: column; gap: 0.5rem; }
+.eyebrow--center::before { width: 1.75rem; }
+.h1 { font-family: var(--font-serif); font-size: var(--h1); font-weight: 600; line-height: 1.08; letter-spacing: -0.025em; color: var(--navy); }
+.h2 { font-family: var(--font-serif); font-size: var(--h2); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; color: var(--navy); }
+.h3 { font-family: var(--font-serif); font-size: var(--h3); font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; color: var(--navy); }
+.lead { font-size: var(--lead); line-height: 1.72; color: var(--muted); }
+
+/* ── Buttons ── */
+.btn { display: inline-flex; align-items: center; gap: 0.45rem; font-size: var(--sm); font-weight: 600; letter-spacing: 0.02em; border-radius: var(--radius-full); padding: 0.75rem 1.75rem; border: 1.5px solid transparent; transition: all var(--t) var(--ease); white-space: nowrap; }
+.btn svg { width: 15px; height: 15px; transition: transform var(--t) var(--ease); flex-shrink: 0; }
+.btn:hover svg { transform: translateX(3px); }
+.btn--primary { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.btn--primary:hover { background: var(--teal); border-color: var(--teal); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(79,174,170,0.3); }
+.btn--outline { background: transparent; color: var(--navy); border-color: var(--border-md); }
+.btn--outline:hover { border-color: var(--navy); transform: translateY(-1px); }
+.btn--ghost  { background: transparent; color: var(--teal); border-color: transparent; padding-inline: 0.5rem; }
+.btn--ghost:hover { color: var(--navy); }
+.btn--light  { background: var(--overlay); color: var(--white); border-color: var(--overlay-md); }
+.btn--light:hover { background: var(--overlay-md); transform: translateY(-1px); }
+
+/* ── Navigation ── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  /* Fixed height — never changes on scroll, zero layout shift */
+  height: 68px;
+  display: flex;
+  align-items: center;
+  transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease);
+  /* On dark hero pages: start with a subtle navy overlay so content is readable */
+  background: transparent;
 }
 
-navToggle?.addEventListener('click', () => {
-  const open = navToggle.classList.toggle('open');
-  navMobile?.classList.toggle('open', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-  navToggle.setAttribute('aria-expanded', String(open));
-});
-navMobile?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
-document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMobileMenu(); });
-
-const currentPath = window.location.pathname.split('/').pop() || 'index.html';
-document.querySelectorAll('.nav__link, .nav__mobile-link').forEach(link => {
-  if (link.getAttribute('href') === currentPath) link.classList.add('active');
-});
-
-const revealItems = document.querySelectorAll('.reveal, .reveal-l, .reveal-r');
-if ('IntersectionObserver' in window) {
-  const revealObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-  revealItems.forEach(el => revealObserver.observe(el));
-} else {
-  revealItems.forEach(el => el.classList.add('visible'));
+/* Dark hero variant — solid enough to read as nav, subtle enough to feel premium */
+.nav--dark {
+  background: rgba(20, 28, 48, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 
-const strings = { es: {'nav.about':'Nosotros','nav.services':'Servicios','nav.speaking':'Speaking','nav.lab':'Lab','nav.contact':'Contacto','nav.cta':'Comenzar','footer.rights':'© 2025 Silvora. Todos los derechos reservados.','footer.tagline':'Reinvención · Creación · Evolución'}, en: {'nav.about':'About','nav.services':'Services','nav.speaking':'Speaking','nav.lab':'Lab','nav.contact':'Contact','nav.cta':'Get started','footer.rights':'© 2025 Silvora. All rights reserved.','footer.tagline':'Reinvention · Creation · Evolution'} };
-const autoTranslations = {"Nosotros": "About", "Servicios": "Services", "Contacto": "Contact", "Comenzar": "Get started", "Reservar": "Book", "Idioma": "Language", "Español": "Spanish", "Menú": "Menu", "Silvora inicio": "Silvora home", "Human Value Evolution Lab": "Human Value Evolution Lab", "Evolucionamos": "We evolve", "el valor humano.": "human value.", "Impulsamos": "We shape", "el futuro.": "the future.", "Un marco estratégico para evolucionar el valor humano en la era de la inteligencia artificial y la longevidad.": "A strategic framework to evolve human value in the age of artificial intelligence and longevity.", "Ver las dimensiones": "View the dimensions", "Conocer Silvora": "Discover Silvora", "Dimensiones del framework": "Framework dimensions", "Líderes acompañados": "Leaders supported", "Organizaciones": "Organizations", "Países": "Countries", "El recorrido": "The journey", "No se trata solo de adaptarse al futuro,": "It is not just about adapting to the future,", "sino de diseñarlo.": "but designing it.", "Silvora acompaña a personas, equipos y organizaciones a través de un recorrido estructurado en cinco dimensiones que integra comprensión del mundo, desarrollo de capacidades, inteligencia artificial, bienestar y diseño de valor diferencial.": "Silvora supports people, teams and organizations through a structured journey across five dimensions that integrates understanding the world, capability development, artificial intelligence, wellbeing and distinctive value design.", "Explorar el framework": "Explore the framework", "Las cinco dimensiones": "The five dimensions", "Un framework para evolucionar": "A framework to evolve", "Entender": "Understand", "¿Qué está cambiando y qué impacto tendrá?": "What is changing and what impact will it have?", "Comprender las fuerzas que transforman el trabajo, la economía y la sociedad.": "Understand the forces transforming work, the economy and society.", "Explorar": "Explore", "Desarrollar": "Develop", "¿Qué capacidades humanas serán más relevantes?": "Which human capabilities will matter most?", "Adaptabilidad, pensamiento crítico, liderazgo, comunicación e influencia.": "Adaptability, critical thinking, leadership, communication and influence.", "Amplificar": "Amplify", "¿Cómo trabajar mejor con inteligencia artificial?": "How can we work better with artificial intelligence?", "IA aplicada al aprendizaje, productividad y colaboración humano–IA.": "AI applied to learning, productivity and human AI collaboration.", "Sostener": "Sustain", "¿Cómo sostener el rendimiento en una vida laboral más extensa?": "How can performance be sustained over a longer working life?", "Energía, salud mental, economía del cuidado y longevidad profesional.": "Energy, mental health, care economy and professional longevity.", "Diseñar": "Design", "¿Cómo crear valor diferencial en la era de la IA?": "How can distinctive value be created in the age of AI?", "Reinventar carreras, organizaciones y modelos de liderazgo.": "Reinvent careers, organizations and leadership models.", "Integrar": "Integrate", "Hoja de ruta personal y organizacional.": "A personal and organizational roadmap.", "Síntesis de las cinco dimensiones en un plan accionable con diagnóstico y próximos pasos.": "A synthesis of the five dimensions into an actionable plan with diagnosis and next steps.", "Diagnóstico": "Diagnosis", "¿A quién acompañamos?": "Who we support", "Personas, equipos y organizaciones que quieren evolucionar.": "People, teams and organizations that want to evolve.", "Acompañamos a líderes, profesionales en transición, equipos de alto rendimiento y organizaciones en transformación.": "We support leaders, professionals in transition, high performance teams and organizations in transformation.", "Ver servicios": "View services", "Personas": "Individuals", "Profesionales que buscan reinventarse y generar nuevo valor en la era de la IA y la longevidad.": "Professionals seeking to reinvent themselves and create new value in the age of AI and longevity.", "Equipos": "Teams", "Grupos que necesitan desarrollar capacidades colectivas para operar en entornos de alta complejidad.": "Groups that need to develop collective capabilities to operate in highly complex environments.", "Empresas que quieren evolucionar su cultura, talento y modelos de trabajo.": "Companies that want to evolve their culture, talent and ways of working.", "Instituciones": "Institutions", "Organismos gubernamentales comprometidos con el desarrollo del capital humano.": "Government bodies committed to human capital development.", "Evolución": "Evolution", "Progreso continuo hacia adelante.": "Continuous forward progress.", "Sabiduría": "Wisdom", "La experiencia que transforma.": "Experience that transforms.", "Adaptabilidad": "Adaptability", "Nos reinventamos y evolucionamos.": "We reinvent ourselves and evolve.", "Liderazgo": "Leadership", "Dirección clara. Impacto real.": "Clear direction. Real impact.", "El valor humano": "Human value", "es nuestro norte.": "is our north star.", "Creamos Silvora porque creemos que las personas y las organizaciones pueden evolucionar con propósito en un mundo de transformación permanente.": "We created Silvora because we believe people and organizations can evolve with purpose in a world of constant transformation.", "Nuestra visión": "Our vision", "Creemos que el futuro se diseña, no solo se anticipa.": "We believe the future is designed, not merely anticipated.", "Vivimos en una era donde la inteligencia artificial, la longevidad y la velocidad del cambio están redefiniendo qué significa crear valor. La pregunta ya no es solo cómo adaptarse, sino cómo liderar esa transformación.": "We live in an era where artificial intelligence, longevity and the speed of change are redefining what it means to create value. The question is no longer only how to adapt, but how to lead that transformation.", "Silvora nació para responder esa pregunta con rigor, humanidad y estrategia.": "Silvora was born to answer that question with rigor, humanity and strategy.", "Nuestra historia": "Our story", "Vimos que el mundo del trabajo estaba cambiando más rápido que la capacidad de las personas para adaptarse. Decidimos crear las herramientas para cerrar esa brecha.": "We saw that the world of work was changing faster than people’s ability to adapt. We decided to create the tools to close that gap.", "Equipo Silvora": "Silvora Team", "Nuestros valores": "Our values", "Lo que guía cada decisión que tomamos.": "What guides every decision we make.", "Progreso continuo hacia adelante. Nunca nos conformamos con el estado actual": "Continuous forward progress. We never settle for the current state", "siempre buscamos el siguiente nivel de impacto.": "we always seek the next level of impact.", "La experiencia que transforma. Combinamos el conocimiento acumulado con la mentalidad del aprendiz permanente.": "Experience that transforms. We combine accumulated knowledge with a lifelong learner mindset.", "Practicamos lo que enseñamos: flexibilidad ante la incertidumbre, resiliencia ante el cambio.": "We practice what we teach: flexibility in uncertainty and resilience through change.", "Dirección clara. Impacto real. El liderazgo es un acto de servicio que multiplica el potencial de quienes te rodean.": "Clear direction. Real impact. Leadership is an act of service that multiplies the potential of those around you.", "Potencial Humano": "Human Potential", "Crecimiento ilimitado. Valor permanente. Confiamos en la capacidad de cada persona de evolucionar más allá de sus límites actuales.": "Unlimited growth. Lasting value. We trust each person’s ability to evolve beyond current limits.", "Nuestro enfoque": "Our approach", "Rigor estratégico con profunda humanidad.": "Strategic rigor with deep humanity.", "Entendemos el punto de partida": "We understand the starting point", "Comenzamos con una evaluación profunda de las capacidades actuales, los desafíos y las oportunidades de cada persona u organización.": "We begin with a deep assessment of current capabilities, challenges and opportunities for each person or organization.", "Diseño": "Design", "Co-creamos el recorrido": "We co-create the journey", "Diseñamos un plan personalizado que integra las cinco dimensiones del framework con los objetivos específicos de cada cliente.": "We design a personalized plan that integrates the five dimensions of the framework with each client’s specific goals.", "Acompañamiento": "Support", "Caminamos juntos": "We walk together", "No entregamos un informe y nos vamos. Acompañamos la implementación, medimos el progreso y ajustamos el camino.": "We do not deliver a report and leave. We support implementation, measure progress and adjust the path.", "Integramos y escalamos": "We integrate and scale", "Los aprendizajes se integran en la cultura organizacional y se escalan para generar impacto duradero.": "Learnings are integrated into organizational culture and scaled to create lasting impact.", "En números": "By the numbers", "Líderes y profesionales acompañados en procesos de evolución": "Leaders and professionals supported through evolution processes", "Organizaciones transformadas a través del framework": "Organizations transformed through the framework", "Países donde hemos generado impacto": "Countries where we have created impact", "Trabajemos juntos": "Let’s work together", "¿Listo para evolucionar?": "Ready to evolve?", "Conversemos sobre cómo Silvora puede acompañar tu próximo capítulo de crecimiento.": "Let’s talk about how Silvora can support your next chapter of growth.", "Escribinos": "Write to us", "El acompañamiento": "The support", "que transforma.": "that transforms.", "Programas a medida para personas, equipos y organizaciones que quieren evolucionar con propósito en la era de la IA y la longevidad.": "Tailored programs for people, teams and organizations that want to evolve with purpose in the age of AI and longevity.", "Para personas": "For individuals", "Tu evolución profesional, diseñada.": "Your professional evolution, designed.", "Acompañamos a líderes y profesionales mayores de 40 años a reinventar su carrera, amplificar sus capacidades con IA y diseñar su próximo capítulo de valor.": "We support leaders and professionals over 40 as they reinvent their careers, amplify their capabilities with AI and design their next chapter of value.", "Diagnóstico profundo de tus capacidades actuales, tu posicionamiento y tus oportunidades de evolución.": "A deep diagnosis of your current capabilities, positioning and evolution opportunities.", "Mapeamos tu valor diferencial y co-creamos tu hoja de ruta de evolución con horizontes de 90 días, 6 meses y 1 año.": "We map your distinctive value and co-create your evolution roadmap across 90 day, 6 month and 1 year horizons.", "Acompañamiento ejecutivo": "Executive support", "Sesiones de coaching estratégico, acceso al framework completo y comunidad de pares para sostener tu evolución.": "Strategic coaching sessions, access to the full framework and a peer community to sustain your evolution.", "Individual": "Individual", "Programa intensivo de 30 días. Assessment, diseño de hoja de ruta y 4 sesiones de acompañamiento ejecutivo.": "An intensive 30 day program. Assessment, roadmap design and 4 executive support sessions.", "Human Value Canvas personalizado": "Personalized Human Value Canvas", "4 sesiones individuales (90 min c/u)": "4 individual sessions, 90 minutes each", "Acceso a herramientas del Lab": "Access to Lab tools", "Programa de 6 meses. El recorrido completo por las cinco dimensiones con acompañamiento continuo.": "A 6 month program. The full journey through the five dimensions with continuous support.", "Todo lo de Evolution Sprint": "Everything in Evolution Sprint", "Programa completo de 5 dimensiones": "Complete 5 dimension program", "12 sesiones de coaching estratégico": "12 strategic coaching sessions", "Para equipos": "For teams", "Capacidades colectivas para la era de la complejidad.": "Collective capabilities for the age of complexity.", "Taller de un día para desarrollar las capacidades humanas que más valor crean en entornos de alta complejidad.": "A one day workshop to develop the human capabilities that create the most value in highly complex environments.", "Learnability y aprendizaje continuo": "Learnability and continuous learning", "Pensamiento crítico en la era de la IA": "Critical thinking in the age of AI", "Comunicación intergeneracional": "Intergenerational communication", "Liderazgo e influencia": "Leadership and influence", "Laboratorio práctico de 2 días para integrar la inteligencia artificial en el trabajo del equipo.": "A practical 2 day lab to integrate artificial intelligence into team work.", "Personal AI Stack del equipo": "Team Personal AI Stack", "Workflows aumentados con IA": "AI augmented workflows", "Gestión del conocimiento inteligente": "Intelligent knowledge management", "AI Playbook personalizado": "Personalized AI Playbook", "Programa": "Program", "Programa trimestral que lleva al equipo por las cinco dimensiones con una hoja de ruta colectiva.": "A quarterly program that takes the team through the five dimensions with a collective roadmap.", "Assessment colectivo de capacidades": "Collective capabilities assessment", "5 workshops modulares": "5 modular workshops", "Seguimiento y medición de impacto": "Follow up and impact measurement", "Para organizaciones": "For organizations", "Transformación cultural con impacto medible.": "Cultural transformation with measurable impact.", "Diseñamos e implementamos programas de Human Value Evolution a escala organizacional, integrando las cinco dimensiones en la cultura y los procesos de la empresa.": "We design and implement Human Value Evolution programs at organizational scale, integrating the five dimensions into company culture and processes.", "Solicitar propuesta": "Request proposal", "Organización": "Organization", "Diagnóstico completo del nivel de madurez de valor humano de la organización a través del Human Value Maturity Model.": "A complete diagnosis of the organization’s human value maturity level through the Human Value Maturity Model.", "Programa anual de transformación que integra las cinco dimensiones en la estrategia de talento, cultura y liderazgo.": "An annual transformation program that integrates the five dimensions into talent, culture and leadership strategy.", "Programa de desarrollo para el equipo directivo. Human Value Evolution aplicado al liderazgo ejecutivo del siglo XXI.": "A development program for the executive team. Human Value Evolution applied to twenty first century executive leadership.", "Cómo trabajamos": "How we work", "Un proceso diseñado para generar impacto real.": "A process designed to create real impact.", "Evaluamos el punto de partida con herramientas propias y conversaciones profundas.": "We assess the starting point with proprietary tools and deep conversations.", "Co-creamos el programa y la hoja de ruta adaptados a los objetivos específicos.": "We co-create the program and roadmap adapted to specific goals.", "Implementación": "Implementation", "Facilitamos el recorrido con workshops, sesiones y herramientas prácticas.": "We facilitate the journey with workshops, sessions and practical tools.", "Integración": "Integration", "Medimos el impacto e integramos los aprendizajes para asegurar cambio sostenible.": "We measure impact and integrate learnings to ensure sustainable change.", "Siguiente paso": "Next step", "Hablemos de tu desafío.": "Let’s talk about your challenge.", "Cada programa se diseña a medida. Contanos qué necesitás y armamos una propuesta en 48 horas.": "Every program is tailored. Tell us what you need and we will prepare a proposal in 48 hours.", "Cinco dimensiones": "Five dimensions", "para evolucionar.": "to evolve.", "Un framework estratégico que integra la comprensión del mundo, el desarrollo humano, la inteligencia artificial, el bienestar y el diseño de valor diferencial.": "A strategic framework that integrates understanding the world, human development, artificial intelligence, wellbeing and distinctive value design.", "El framework": "The framework", "El Human Value Evolution Lab es el corazón intelectual de Silvora. Cada dimensión responde a una pregunta crítica sobre el futuro del valor humano. Juntas, forman un recorrido integrado que transforma la manera en que personas y organizaciones crean valor en la era de la IA y la longevidad.": "The Human Value Evolution Lab is Silvora’s intellectual core. Each dimension answers a critical question about the future of human value. Together, they form an integrated journey that transforms the way people and organizations create value in the age of AI and longevity.", "Comprender las fuerzas que transforman el mundo del trabajo, la economía y la sociedad para anticipar escenarios, identificar oportunidades y tomar mejores decisiones estratégicas.": "Understand the forces transforming the world of work, the economy and society to anticipate scenarios, identify opportunities and make better strategic decisions.", "Agenda": "Agenda", "Megatendencias y futuros del trabajo": "Megatrends and futures of work", "Impacto de la IA en industrias": "Impact of AI across industries", "Silver Economy y longevidad": "Silver Economy and longevity", "Escenarios 2030–2040": "2030 to 2040 scenarios", "Herramientas": "Tools", "Desarrollar las capacidades que ganan valor cuando la tecnología acelera: adaptabilidad, pensamiento crítico, learnability, liderazgo, comunicación e influencia.": "Develop the capabilities that gain value as technology accelerates: adaptability, critical thinking, learnability, leadership, communication and influence.", "Pensamiento crítico": "Critical thinking", "Amplificar las capacidades humanas mediante IA. Productividad aumentada, gestión inteligente del conocimiento y colaboración humano–IA para potenciar el desempeño.": "Amplify human capabilities through AI. Augmented productivity, intelligent knowledge management and human AI collaboration to enhance performance.", "IA como infraestructura personal": "AI as personal infrastructure", "Toma de decisiones con IA": "AI assisted decision making", "Laboratorios prácticos": "Practical labs", "¿Cómo sostener el rendimiento y el bienestar en una vida laboral más extensa?": "How can performance and wellbeing be sustained over a longer working life?", "La sostenibilidad humana como ventaja estratégica. Energía, salud mental, economía del cuidado y longevidad profesional para mantener el potencial en el largo plazo.": "Human sustainability as a strategic advantage. Energy, mental health, care economy and professional longevity to maintain potential over the long term.", "Energía y rendimiento": "Energy and performance", "Prevención del burnout": "Burnout prevention", "Economía del cuidado": "Care economy", "Longevidad profesional": "Professional longevity", "Modelos de prevención": "Prevention models", "¿Cómo crear valor diferencial en la era de la IA y la longevidad?": "How can distinctive value be created in the age of AI and longevity?", "Diseñar el valor humano del futuro. Reinventar carreras, organizaciones y modelos de liderazgo para generar valor sostenible en contextos de transformación permanente.": "Design the human value of the future. Reinvent careers, organizations and leadership models to create sustainable value in contexts of permanent transformation.", "Reinvención profesional": "Professional reinvention", "Empleabilidad futura": "Future employability", "Posicionamiento diferencial": "Distinctive positioning", "Diseño de carrera": "Career design", "Mentorías y peer learning": "Mentoring and peer learning", "Iniciar diagnóstico": "Start diagnosis", "Síntesis e integración de las cinco dimensiones en una hoja de ruta personal y organizacional accionable. El punto de llegada y el inicio del siguiente ciclo de evolución.": "Synthesis and integration of the five dimensions into an actionable personal and organizational roadmap. The point of arrival and the beginning of the next evolution cycle.", "Solicitar tu Plan": "Request your Plan", "Encontrá tu punto de partida.": "Find your starting point.", "El primer paso es el diagnóstico. Completá el Talent Maturity Assessment y recibí un análisis personalizado de tus dimensiones de evolución.": "The first step is diagnosis. Complete the Talent Maturity Assessment and receive a personalized analysis of your evolution dimensions.", "Abrir assessment": "Open assessment", "Ideas que mueven": "Ideas that move", "a la acción.": "people to action.", "Conferencias y keynotes que transforman la manera en que líderes y organizaciones piensan el futuro del valor humano en la era de la IA.": "Talks and keynotes that transform the way leaders and organizations think about the future of human value in the age of AI.", "Por qué Silvora en tu evento": "Why Silvora for your event", "Perspectivas que generan conversaciones que importan.": "Perspectives that create conversations that matter.", "Silvora lleva a escenarios corporativos, congresos y foros ejecutivos una visión estratégica, basada en evidencia y profundamente humana sobre los desafíos del presente y las oportunidades del futuro.": "Silvora brings a strategic, evidence based and deeply human vision to corporate stages, conferences and executive forums about present challenges and future opportunities.", "Audiencias de hasta 2.000 personas": "Audiences of up to 2,000 people", "Keynotes en español, inglés y portugués": "Keynotes in Spanish, English and Portuguese", "Formatos de 30 a 120 minutos": "Formats from 30 to 120 minutes", "Conferencia principal para abrir o cerrar un evento. Alto impacto, narrativa poderosa, accionable.": "Main talk to open or close an event. High impact, powerful narrative, actionable.", "Sesión de formación profunda con herramientas, frameworks y ejercicios prácticos.": "Deep training session with tools, frameworks and practical exercises.", "Participación como panelista experto en debates sobre el futuro del trabajo y el talento.": "Participation as an expert panelist in discussions about the future of work and talent.", "Taller práctico en profundidad para equipos directivos o grupos de líderes.": "In depth practical workshop for executive teams or groups of leaders.", "Presencial o virtual": "In person or virtual", "Disponibles en América Latina, España y Europa": "Available in Latin America, Spain and Europe", "Cifras del speaker": "Speaker metrics", "Conferencias y keynotes": "Talks and keynotes", "Profesionales alcanzados": "Professionals reached", "Países de presencia": "Countries reached", "Temas de conferencia": "Talk topics", "Qué podemos llevar a tu evento.": "What we can bring to your event.", "El futuro del valor humano en la era de la IA": "The future of human value in the age of AI", "Cómo la inteligencia artificial está redefiniendo qué capacidades crean valor y cómo los líderes deben prepararse para liderar en ese contexto.": "How artificial intelligence is redefining which capabilities create value and how leaders must prepare to lead in that context.", "Longevidad profesional y reinvención de carrera": "Professional longevity and career reinvention", "La Silver Economy y el impacto de las carreras de 50 años en la gestión del talento, el liderazgo multigeneracional y el bienestar organizacional.": "The Silver Economy and the impact of 50 year careers on talent management, multigenerational leadership and organizational wellbeing.", "Amplificá tu impacto con inteligencia artificial": "Amplify your impact with artificial intelligence", "Keynote práctico sobre cómo líderes y profesionales pueden integrar la IA en su trabajo para multiplicar su productividad y su creatividad.": "A practical keynote on how leaders and professionals can integrate AI into their work to multiply productivity and creativity.", "Human Skills en un mundo automatizado": "Human Skills in an automated world", "Las capacidades que nunca podrá reemplazar un algoritmo: adaptabilidad, empatía, criterio, liderazgo y la habilidad de aprender continuamente.": "The capabilities an algorithm can never replace: adaptability, empathy, judgment, leadership and the ability to keep learning.", "Bienestar como ventaja estratégica": "Wellbeing as a strategic advantage", "Cómo las organizaciones que invierten en la sostenibilidad humana obtienen ventaja competitiva real en atracción, retención y rendimiento del talento.": "How organizations that invest in human sustainability gain real competitive advantage in attraction, retention and talent performance.", "Diseñá tu próximo capítulo": "Design your next chapter", "Conferencia inspiracional para profesionales en transición. Cómo reinventarse con propósito, criterio y visión en la segunda mitad de la carrera.": "An inspirational talk for professionals in transition. How to reinvent yourself with purpose, judgment and vision in the second half of your career.", "Formatos disponibles": "Available formats", "Adaptamos el formato a tu evento.": "We adapt the format to your event.", "Reservá tu fecha": "Book your date", "¿Querés a Silvora en tu evento?": "Do you want Silvora at your event?", "Contanos sobre tu evento, la audiencia y el tema que te interesa. Te respondemos en 24 horas con una propuesta.": "Tell us about your event, audience and topic of interest. We will reply within 24 hours with a proposal.", "Solicitar disponibilidad": "Request availability", "Empezá tu": "Start your", "evolución.": "evolution.", "Contanos tu desafío. Te respondemos en 24 horas con un diagnóstico inicial y una propuesta a medida.": "Tell us about your challenge. We will reply within 24 hours with an initial diagnosis and a tailored proposal.", "Nombre *": "First name *", "Apellido *": "Last name *", "Email *": "Email *", "¿Qué te interesa? *": "What are you interested in? *", "Seleccioná una opción": "Select an option", "Programa individual": "Individual program", "Programa para equipos": "Team program", "Programa organizacional": "Organizational program", "Conferencia o keynote": "Talk or keynote", "Otra consulta": "Other inquiry", "Contanos tu desafío *": "Tell us about your challenge *", "Enviar mensaje": "Send message", "¡Mensaje enviado!": "Message sent!", "Te respondemos en menos de 24 horas.": "We will reply in less than 24 hours.", "También podés encontrarnos aquí.": "You can also find us here.", "Preferís hablar antes de escribir. Estamos disponibles para una conversación exploratoria de 30 minutos sin costo.": "Prefer to talk before writing? We are available for a free 30 minute exploratory conversation.", "Tiempo de respuesta": "Response time", "Menos de 24 horas": "Less than 24 hours", "Respondemos todos los mensajes de lunes a viernes en horario de Buenos Aires (GMT-3).": "We answer all messages Monday to Friday during Buenos Aires business hours (GMT-3).", "Preguntas frecuentes": "Frequently asked questions", "¿Trabajan con personas o solo con empresas?": "Do you work with individuals or only companies?", "Con ambos. Tenemos programas diseñados para profesionales individuales, equipos y organizaciones completas.": "Both. We have programs designed for individual professionals, teams and full organizations.", "¿Cuál es la duración mínima de un programa?": "What is the minimum duration of a program?", "El Evolution Sprint dura 30 días e incluye assessment + 4 sesiones. Para programas organizacionales, el mínimo es un workshop de un día.": "The Evolution Sprint lasts 30 days and includes an assessment plus 4 sessions. For organizational programs, the minimum is a one day workshop.", "¿Trabajan en toda América Latina?": "Do you work across Latin America?", "Sí. Operamos de manera presencial en Argentina, Uruguay, Chile, Colombia, México y España, y de manera virtual en cualquier país.": "Yes. We work in person in Argentina, Uruguay, Chile, Colombia, Mexico and Spain, and virtually in any country.", "Reinvención · Creación · Evolución": "Reinvention · Creation · Evolution", "Framework estratégico para evolucionar el valor humano.": "Strategic framework to evolve human value.", "Framework estratégico para evolucionar el valor humano en la era de la IA y la longevidad.": "Strategic framework to evolve human value in the age of AI and longevity.", "Páginas": "Pages", "© 2025 Silvora. Todos los derechos reservados.": "© 2025 Silvora. All rights reserved.", "Tu nombre": "Your first name", "Tu apellido": "Your last name", "Empresa u organización": "Company or organization", "Describí brevemente tu situación, lo que necesitás y el contexto de tu organización o carrera...": "Briefly describe your situation, what you need and the context of your organization or career...", "Nosotros · Silvora": "About · Silvora", "Contacto · Silvora": "Contact · Silvora", "Servicios · Silvora": "Services · Silvora", "Human Value Evolution Lab · Silvora": "Human Value Evolution Lab · Silvora", "Speaking · Silvora": "Speaking · Silvora", "Silvora · Human Value Evolution": "Silvora · Human Value Evolution", "Progreso continuo hacia adelante. Nunca nos conformamos con el estado actual — siempre buscamos el siguiente nivel de impacto.": "Continuous forward progress. We never settle for the current state — we always seek the next level of impact.", "Crecimiento ilimitado.": "Unlimited growth.", "Potencial": "Potential", "Comenzá con el Talent Maturity Assessment para identificar tu punto de partida y construir tu hoja de ruta.": "Start with the Talent Maturity Assessment to identify your starting point and build your roadmap.", "Solicitar assessment": "Request assessment", "Lo que dicen quienes evolucionaron": "What people who evolved say", "Testimonios": "Testimonials", "Silvora nos ayudó a entender qué capacidades humanas serán críticas en los próximos cinco años. Transformó la manera en que pensamos el talento.": "Silvora helped us understand which human capabilities will be critical over the next five years. It transformed how we think about talent.", "El framework de las cinco dimensiones nos dio un lenguaje común para hablar de evolución profesional con todo el equipo directivo.": "The five-dimension framework gave us a shared language to talk about professional evolution with the entire leadership team.", "El taller de AI Capability Evolution cambió la relación de mi equipo con la inteligencia artificial. Pasamos del miedo a la amplificación.": "The AI Capability Evolution workshop changed my team’s relationship with artificial intelligence. We moved from fear to amplification.", "Chief People Officer · Empresa tecnológica": "Chief People Officer · Technology company", "CEO · Grupo empresarial": "CEO · Business group", "Directora de Innovación · Corporación multinacional": "Director of Innovation · Multinational corporation", "Diseñá tu próximo capítulo.": "Design your next chapter.", "Empezá tu evolución": "Start your evolution", "nombre@empresa.com": "name@company.com", "English": "English", "Keynote, panel, workshop o masterclass": "Keynote, panel, workshop or masterclass", "3–8 horas": "3–8 hours", "45–60 min": "45–60 min", "60–90 min": "60–90 min", "90–120 min": "90–120 min", "90-Day Action Plan + seguimiento": "90-Day Action Plan + follow up", "01 · Assessment": "01 · Assessment", "02 · Design": "02 · Design", "03 · Journey": "03 · Journey", "Lab": "Lab", "Speaking": "Speaking", "LinkedIn": "LinkedIn", "Email": "Email", "World Evolution": "World Evolution", "Human Skills": "Human Skills", "AI Capability": "AI Capability", "Personal Care": "Personal Care", "Human Value Design": "Human Value Design", "Human Value Evolution": "Human Value Evolution", "Talent Maturity Assessment": "Talent Maturity Assessment", "Evolution Sprint": "Evolution Sprint", "Evolution Journey": "Evolution Journey", "Human Value Canvas": "Human Value Canvas", "Human Value Lab": "Human Value Lab", "Keynote": "Keynote", "Workshop": "Workshop", "Masterclass": "Masterclass", "Panel": "Panel", "AI Capability Evolution": "AI Capability Evolution", "Human Skills Evolution": "Human Skills Evolution", "Personal Care Evolution": "Personal Care Evolution", "Human + AI Collaboration": "Human + AI Collaboration", "AI Collaboration Lab": "AI Collaboration Lab", "AI Playbook": "AI Playbook", "Capability Assessment": "Capability Assessment", "Learning Roadmap": "Learning Roadmap", "Leadership Academy": "Leadership Academy", "Leadership Framework": "Leadership Framework", "Team Evolution Program": "Team Evolution Program", "Culture Evolution Program": "Culture Evolution Program", "Organizational Audit": "Organizational Audit", "Impact Assessment": "Impact Assessment", "Burnout Assessment": "Burnout Assessment", "Energy Audit": "Energy Audit", "Sustainability Plan": "Sustainability Plan", "Personal AI Stack": "Personal AI Stack", "Personal AI Management": "Personal AI Management", "Knowledge Management System": "Knowledge Management System", "Skills Mapping": "Skills Mapping", "Trend Radar": "Trend Radar", "Futures Mapping": "Futures Mapping", "Scenario Planning Canvas": "Scenario Planning Canvas", "90-Day Action Plan": "90-Day Action Plan", "Evolution Roadmap": "Evolution Roadmap", "Human Value Evolution Plan": "Human Value Evolution Plan", "Ana L.": "Ana L.", "María C.": "María C.", "Jorge R.": "Jorge R.", "@silvoratalent": "@silvoratalent", "hola@silvora.com": "hola@silvora.com", "Principal": "Principal", "Nuestro equipo": "Our team", "Pensamos la evolución humana desde la estrategia, la experiencia y el futuro del trabajo.": "We approach human evolution through strategy, experience and the future of work.", "Silvora integra mirada estratégica, sensibilidad humana y diseño de transformación para acompañar a personas, equipos y organizaciones en momentos de cambio profundo.": "Silvora combines strategic thinking, human sensitivity and transformation design to support people, teams and organizations through deep change.", "Procesos estratégicos, prácticos y profundamente humanos.": "Strategic, practical and deeply human processes.", "Diseñamos experiencias de evolución que combinan diagnóstico, facilitación, inteligencia artificial aplicada y acompañamiento ejecutivo.": "We design evolution experiences that combine diagnosis, facilitation, applied artificial intelligence and executive guidance.", "Keynotes & workshops": "Keynotes & workshops", "Conversaciones que conectan estrategia, humanidad y acción.": "Conversations that connect strategy, humanity and action.", "Llevamos a escenarios corporativos una mirada clara sobre inteligencia artificial, longevidad, liderazgo y evolución del valor humano.": "We bring a clear perspective on artificial intelligence, longevity, leadership and human value evolution to corporate stages.", "\"Vimos que el mundo del trabajo estaba cambiando más rápido que la capacidad de las personas para adaptarse. Decidimos crear las herramientas para cerrar esa brecha.\"": "\"We saw that the world of work was changing faster than people’s ability to adapt. We decided to create the tools to close that gap.\"", "\"Silvora nos ayudó a entender qué capacidades humanas serán críticas en los próximos cinco años. Transformó la manera en que pensamos el talento.\"": "\"Silvora helped us understand which human capabilities will be critical over the next five years. It transformed how we think about talent.\"", "\"El framework de las cinco dimensiones nos dio un lenguaje común para hablar de evolución profesional con todo el equipo directivo.\"": "\"The five-dimension framework gave us a shared language to talk about professional evolution with the entire leadership team.\"", "\"El taller de AI Capability Evolution cambió la relación de mi equipo con la inteligencia artificial. Pasamos del miedo a la amplificación.\"": "\"The AI Capability Evolution workshop changed my team’s relationship with artificial intelligence. We moved from fear to amplification.\""};
-const originalText = new WeakMap();
-const originalAttrs = new WeakMap();
-const walkerFilter = { acceptNode(node) { const parent = node.parentElement; if (!parent || ['SCRIPT','STYLE','NOSCRIPT'].includes(parent.tagName)) return NodeFilter.FILTER_REJECT; return node.nodeValue.trim() ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT; } };
+/* On dark hero: links are light */
+.nav--dark .nav__link,
+.nav--dark .nav__wordmark { color: var(--nav-link); }
+.nav--dark .nav__tagline { color: var(--teal); }
+.nav--dark .nav__toggle span { background: var(--nav-link); }
 
-function normalizeText(value) {
-  return value
-    .replace(/[“”]/g, '"')
-    .replace(/[’]/g, "'")
-    .replace(/^[-–—]\s*/, '')
-    .replace(/\s+/g, ' ')
-    .trim();
+/* Scrolled state — same height, just change background & shadow */
+.nav.scrolled {
+  background: rgba(247, 244, 239, 0.97) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 1px 0 var(--border), 0 2px 16px rgba(31,42,68,0.06);
 }
-function translateValue(value, lang) {
-  if (lang === 'es') return value;
-  const normalized = normalizeText(value);
-  const direct = autoTranslations[normalized] || autoTranslations[value.trim()];
-  if (direct) return direct;
+/* After scroll: restore dark links regardless of page */
+.nav.scrolled .nav__link,
+.nav.scrolled .nav__wordmark { color: var(--navy) !important; }
+.nav.scrolled .nav__tagline { color: var(--teal) !important; }
+.nav.scrolled .nav__toggle span { background: var(--navy) !important; }
 
-  // Fix quoted text and testimonials: translate the inner text and keep the quote marks.
-  const quoted = normalized.match(/^("|')(.+)(\1)$/);
-  if (quoted) {
-    const inner = normalizeText(quoted[2]);
-    const translatedInner = autoTranslations[inner];
-    if (translatedInner) return quoted[1] + translatedInner + quoted[1];
+.nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; height: 100%; width: 100%; }
+/* Nav wrap must fill height for inner to stretch */
+.nav > .wrap { height: 100%; display: flex; align-items: center; }
+.nav__logo { display: flex; align-items: center; gap: 0.575rem; text-decoration: none; flex-shrink: 0; }
+.nav__logo-text { display: flex; flex-direction: column; }
+.nav__wordmark { font-family: var(--font-sans); font-size: 1.125rem; font-weight: 700; letter-spacing: 0.14em; color: var(--navy); line-height: 1; transition: color var(--t) var(--ease); }
+.nav__tagline  { font-size: 0.48rem; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--teal); line-height: 1; margin-top: 2px; }
+.nav__links { display: flex; align-items: center; gap: 1.75rem; }
+.nav__link {
+  font-size: var(--sm); font-weight: 500; color: var(--navy); position: relative;
+  transition: color var(--t) var(--ease); padding-block: 2px;
+}
+.nav__link::after {
+  content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 1.5px;
+  background: var(--teal); transform: scaleX(0); transform-origin: left;
+  transition: transform var(--t) var(--ease);
+}
+.nav__link:hover { color: var(--teal); }
+.nav__link:hover::after, .nav__link.active::after { transform: scaleX(1); }
+.nav__link.active { color: var(--teal); font-weight: 600; }
+
+/* Dark nav link state */
+.nav--dark:not(.scrolled) .nav__link { color: var(--nav-link); }
+.nav--dark:not(.scrolled) .nav__link:hover { color: #fff; }
+.nav--dark:not(.scrolled) .nav__link.active { color: var(--teal); }
+
+.nav__cta { display: flex; align-items: center; gap: 0.5rem; }
+
+/* Language switcher */
+.lang-switcher { display: flex; align-items: center; border: 1.5px solid var(--border-md); border-radius: var(--radius-full); overflow: hidden; }
+.nav--dark:not(.scrolled) .lang-switcher { border-color: rgba(255,255,255,0.22); }
+.lang-btn {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 0.35rem 0.7rem; color: var(--muted); background: transparent;
+  transition: all var(--t) var(--ease); border: none; cursor: pointer; font-family: inherit;
+  line-height: 1;
+}
+.nav--dark:not(.scrolled) .lang-btn { color: rgba(247,244,239,0.55); }
+.lang-btn.lang-active { background: var(--navy); color: var(--white); }
+.nav--dark:not(.scrolled) .lang-btn.lang-active { background: var(--teal); color: var(--white); }
+.nav.scrolled .lang-btn.lang-active { background: var(--navy); color: var(--white); }
+.lang-btn:not(.lang-active):hover { color: var(--navy); }
+.nav--dark:not(.scrolled) .lang-btn:not(.lang-active):hover { color: #fff; }
+
+.nav__toggle { display: none; flex-direction: column; gap: 5px; padding: 0.3rem; }
+.nav__toggle span { display: block; width: 22px; height: 1.5px; background: var(--navy); transition: transform var(--t) var(--ease), opacity var(--t); }
+.nav__toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.nav__toggle.open span:nth-child(2) { opacity: 0; }
+.nav__toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.nav__mobile {
+  display: none; position: fixed; inset: 0; top: 68px;
+  background: var(--bg); padding: 1.5rem var(--gutter) 2rem;
+  flex-direction: column; gap: 0; z-index: 199;
+  border-top: 1px solid var(--border);
+}
+.nav__mobile.open { display: flex; }
+.nav__mobile-link {
+  font-size: 1.5rem; font-weight: 600; color: var(--navy);
+  padding-block: 0.875rem; border-bottom: 1px solid var(--border);
+  font-family: var(--font-serif);
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav__mobile-link::after { content: '→'; font-family: var(--font-sans); font-size: var(--sm); color: var(--teal); }
+.nav__mobile-lang { display: flex; gap: 0.75rem; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border); }
+.nav__mobile-lang .lang-btn { font-size: var(--sm); padding: 0.5rem 1.25rem; border-radius: var(--radius-full); border: 1.5px solid var(--border-md); color: var(--muted); }
+.nav__mobile-lang .lang-btn.lang-active { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100svh;
+  display: grid;
+  place-items: center;
+  padding-top: 5rem;
+  padding-bottom: 3rem;
+  position: relative; overflow: hidden; background: var(--navy);
+}
+.hero__bg { position: absolute; inset: 0; pointer-events: none; }
+.hero__bg svg {
+  position: absolute; right: -2%; top: 50%; transform: translateY(-50%);
+  width: clamp(340px, 52vw, 800px); opacity: 0.055;
+}
+.hero__content { position: relative; z-index: 1; max-width: 820px; }
+.hero__eyebrow { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.5rem; }
+.hero__dot { width: 5px; height: 5px; border-radius: 50%; background: var(--teal); flex-shrink: 0; }
+.hero__eyebrow .eyebrow { color: var(--teal); letter-spacing: 0.18em; }
+.hero__eyebrow .eyebrow::before { background: var(--copper); }
+
+.hero__headline {
+  font-family: var(--font-serif); font-size: var(--h1); font-weight: 600;
+  line-height: 1.05; letter-spacing: -0.025em; color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.hero__headline em { font-style: normal; color: var(--copper); }
+.hero__headline .t { color: var(--teal); }
+.hero__lead { font-size: var(--lead); line-height: 1.72; color: rgba(247,244,239,0.7); max-width: 520px; margin-bottom: 2rem; }
+.hero__actions { display: flex; flex-wrap: wrap; gap: 0.875rem; align-items: center; }
+.hero__scroll { position: absolute; bottom: 1.75rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.625rem; }
+.hero__scroll-line { width: 1px; height: 32px; background: linear-gradient(to bottom, var(--teal), transparent); animation: pulse 2s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:0.3} 50%{opacity:1} }
+
+/* Marquee / logo bar */
+.marquee-wrap {
+  background: var(--cream); border-top: 1px solid var(--border);
+  overflow: hidden; padding-block: 1rem;
+}
+.marquee-track {
+  display: flex; gap: 3rem; align-items: center;
+  white-space: nowrap; animation: marquee 28s linear infinite;
+  width: max-content;
+}
+.marquee-wrap:hover .marquee-track { animation-play-state: paused; }
+.marquee-item {
+  font-size: var(--xs); font-weight: 700; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--muted); flex-shrink: 0;
+  display: flex; align-items: center; gap: 1.5rem;
+}
+.marquee-item::after { content: '·'; color: var(--copper); font-size: 1.2rem; line-height: 1; }
+@keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ── Page Hero (interior pages) ── */
+.page-hero {
+  background: var(--navy);
+  padding-top: clamp(5.5rem,10vw,7.5rem);
+  padding-bottom: clamp(2.5rem,5vw,4rem);
+  position: relative; overflow: hidden;
+  /* Fit in viewport alongside nav */
+  min-height: min(520px, 52vh);
+  display: flex; flex-direction: column; justify-content: flex-end;
+}
+.page-hero__bg { position: absolute; inset: 0; pointer-events: none; opacity: 0.045; }
+.page-hero__bg svg { position: absolute; right: -5%; top: -15%; width: 55%; }
+.page-hero__eyebrow { display: flex; align-items: center; gap: 0.625rem; margin-bottom: 1.25rem; }
+.page-hero__eyebrow span { font-size: var(--xs); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); }
+.page-hero__eyebrow::before { content: ''; width: 1.5rem; height: 1.5px; background: var(--copper); flex-shrink: 0; }
+.page-hero__title { font-family: var(--font-serif); font-size: var(--h1); font-weight: 600; line-height: 1.08; letter-spacing: -0.025em; color: var(--white); margin-bottom: 1rem; }
+.page-hero__title em { font-style: normal; color: var(--copper); }
+.page-hero__lead { font-size: var(--lead); line-height: 1.7; color: rgba(247,244,239,0.68); max-width: 540px; }
+
+/* ── Section header ── */
+.section-header { margin-bottom: clamp(2rem,5vw,4rem); }
+.section-header--center { text-align: center; display: flex; flex-direction: column; align-items: center; }
+.section-header .eyebrow { margin-bottom: 1rem; }
+.section-header .lead { max-width: 560px; margin-top: 0.75rem; }
+
+/* ── Intro dark section ── */
+.intro-dark { background: var(--navy); }
+.intro-dark__layout { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(2.5rem,7vw,7rem); align-items: center; }
+.intro-dark__label {
+  font-size: var(--xs); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--teal); display: flex; align-items: center; gap: 0.625rem; margin-bottom: 1.25rem;
+}
+.intro-dark__label::before { content: ''; width: 1.5rem; height: 1.5px; background: var(--copper); flex-shrink: 0; }
+.intro-dark__title { font-family: var(--font-serif); font-size: var(--h2); font-weight: 600; line-height: 1.15; letter-spacing: -0.02em; color: var(--white); }
+.intro-dark__title em { font-style: normal; color: var(--copper); }
+.intro-dark__body { font-size: var(--body); line-height: 1.78; color: rgba(247,244,239,0.68); }
+
+/* ── Dimension list ── */
+.dimensions__list { border-top: 1px solid var(--border); }
+.dim {
+  display: grid; grid-template-columns: 64px 1fr auto;
+  gap: 1.75rem; align-items: start;
+  padding-block: 1.75rem; border-bottom: 1px solid var(--border);
+  cursor: default; position: relative; transition: background var(--t) var(--ease);
+}
+.dim::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+  background: var(--teal); transform: scaleY(0); transform-origin: top;
+  transition: transform var(--t) var(--ease);
+}
+.dim:hover { background: rgba(79,174,170,0.03); }
+.dim:hover::before { transform: scaleY(1); }
+.dim__num { font-family: var(--font-serif); font-size: clamp(1.75rem,3.5vw,3rem); font-weight: 400; color: var(--silver); line-height: 1; letter-spacing: -0.02em; }
+.dim__verb { font-size: var(--xs); font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem; }
+.dim__name { font-family: var(--font-serif); font-size: var(--h3); font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; line-height: 1.2; }
+.dim__q { font-size: var(--sm); color: var(--muted); font-style: italic; font-family: var(--font-serif); margin-bottom: 0.6rem; }
+.dim__body { font-size: var(--sm); line-height: 1.7; color: var(--muted); max-width: 480px; }
+.dim__arrow { display: flex; align-items: center; gap: 0.35rem; font-size: var(--xs); font-weight: 600; color: var(--silver); padding-top: 0.4rem; white-space: nowrap; transition: color var(--t) var(--ease); flex-shrink: 0; }
+.dim:hover .dim__arrow { color: var(--teal); }
+.dim:hover .dim__arrow svg { transform: translateX(3px); }
+.dim__arrow svg { width: 15px; transition: transform var(--t) var(--ease); }
+.dim--plus { background: var(--cream); }
+.dim--plus .dim__num { color: var(--copper); opacity: 0.55; }
+.dim--plus .dim__verb { color: var(--copper); }
+
+/* ── Cards ── */
+.card { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: clamp(1.375rem,2.5vw,2.25rem); transition: box-shadow var(--t) var(--ease), transform var(--t) var(--ease), border-color var(--t) var(--ease); }
+.card:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); border-color: rgba(79,174,170,0.3); }
+.card__icon { width: 40px; height: 40px; margin-bottom: 1.125rem; color: var(--teal); }
+.card__tag { display: inline-block; font-size: var(--xs); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--teal); background: rgba(79,174,170,0.10); border-radius: var(--radius-full); padding: 0.22rem 0.7rem; margin-bottom: 0.875rem; }
+.card__tag--coral { color: var(--copper); background: rgba(184,115,51,0.10); }
+.card__title { font-family: var(--font-serif); font-size: var(--h3); font-weight: 600; color: var(--navy); margin-bottom: 0.625rem; line-height: 1.22; }
+.card__body { font-size: var(--sm); line-height: 1.7; color: var(--muted); }
+.card__list { margin-top: 0.875rem; display: flex; flex-direction: column; gap: 0.45rem; }
+.card__list li { font-size: var(--sm); color: var(--muted); display: flex; align-items: flex-start; gap: 0.45rem; }
+.card__list li::before { content: ''; width: 4px; height: 4px; border-radius: 50%; background: var(--copper); flex-shrink: 0; margin-top: 0.5rem; }
+
+/* ── Audience cards ── */
+.audience-grid { display: flex; flex-direction: column; gap: 1px; background: var(--border); border-radius: var(--radius-lg); overflow: hidden; border: 1px solid var(--border); }
+.audience-card { background: var(--bg); padding: 1.625rem; display: grid; grid-template-columns: auto 1fr; gap: 1.125rem; align-items: start; transition: background var(--t) var(--ease); }
+.audience-card:hover { background: var(--white); }
+.audience-card__dot { width: 7px; height: 7px; border-radius: 50%; background: var(--copper); margin-top: 6px; flex-shrink: 0; }
+.audience-card__name { font-weight: 700; font-size: var(--body); color: var(--navy); margin-bottom: 0.3rem; }
+.audience-card__desc { font-size: var(--sm); line-height: 1.65; color: var(--muted); }
+
+/* ── Values grid ── */
+.values-grid { display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+.value-card { background: var(--cream); padding: 1.75rem 1.375rem; transition: background var(--t) var(--ease); }
+.value-card:hover { background: var(--white); }
+.value-card__icon { width: 32px; height: 32px; color: var(--teal); margin-bottom: 0.875rem; }
+.value-card__name { font-size: var(--sm); font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--navy); margin-bottom: 0.3rem; }
+.value-card__desc { font-size: var(--xs); line-height: 1.65; color: var(--muted); }
+
+/* ── Stats bar ── */
+.stats-bar { background: var(--navy); padding-block: clamp(1.5rem,3.5vw,2.5rem); }
+.stats-bar__inner { display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: rgba(255,255,255,0.08); }
+.stat { text-align: center; padding: 1.5rem 1rem; }
+.stat__num { font-family: var(--font-serif); font-size: clamp(2rem,4vw,3.25rem); font-weight: 600; color: var(--teal); line-height: 1; margin-bottom: 0.4rem; }
+.stat__label { font-size: var(--xs); color: rgba(247,244,239,0.58); line-height: 1.5; font-weight: 500; letter-spacing: 0.04em; }
+
+/* ── CTA dark section ── */
+.cta-dark { background: var(--navy); position: relative; overflow: hidden; text-align: center; }
+.cta-dark__bg { position: absolute; inset: 0; pointer-events: none; opacity: 0.045; }
+.cta-dark__content { position: relative; z-index: 1; max-width: 580px; margin-inline: auto; }
+.cta-dark__label {
+  display: flex; align-items: center; justify-content: center; gap: 0.625rem;
+  margin-bottom: 1.25rem; font-size: var(--xs); font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal);
+}
+.cta-dark__label::before, .cta-dark__label::after { content: ''; width: 1.25rem; height: 1.5px; background: var(--copper); }
+.cta-dark__title { font-family: var(--font-serif); font-size: var(--h2); font-weight: 600; line-height: 1.12; letter-spacing: -0.02em; color: var(--white); margin-bottom: 1rem; }
+.cta-dark__body { font-size: var(--body); line-height: 1.7; color: rgba(247,244,239,0.62); margin-bottom: 2.25rem; }
+.cta-dark__actions { display: flex; flex-wrap: wrap; gap: 0.875rem; justify-content: center; }
+
+/* ── Process steps ── */
+.steps { display: flex; flex-direction: column; gap: 0; border-left: 1.5px solid var(--border); margin-left: 1.375rem; }
+.step { padding: 0 0 2.25rem 1.875rem; position: relative; }
+.step::before { content: ''; position: absolute; left: -7px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--teal); border: 2px solid var(--bg); }
+.step:last-child { padding-bottom: 0; }
+.step__num { font-size: var(--xs); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--teal); margin-bottom: 0.4rem; }
+.step__title { font-family: var(--font-serif); font-size: var(--h3); font-weight: 600; color: var(--navy); margin-bottom: 0.6rem; }
+.step__body { font-size: var(--sm); line-height: 1.7; color: var(--muted); }
+
+/* ── Testimonials ── */
+.testimonial { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.25rem; }
+.testimonial__quote { font-family: var(--font-serif); font-size: var(--h3); font-weight: 400; line-height: 1.45; color: var(--navy); margin-bottom: 1.375rem; font-style: italic; }
+.testimonial__author { display: flex; align-items: center; gap: 0.875rem; }
+.testimonial__avatar { width: 40px; height: 40px; border-radius: 50%; background: rgba(79,174,170,0.14); display: flex; align-items: center; justify-content: center; font-size: var(--xs); font-weight: 700; color: var(--teal); flex-shrink: 0; }
+.testimonial__name { font-weight: 600; font-size: var(--sm); color: var(--navy); }
+.testimonial__role { font-size: var(--xs); color: var(--muted); }
+
+/* ── Contact form ── */
+.form { display: flex; flex-direction: column; gap: 1.125rem; }
+.form__row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.125rem; }
+.form__field { display: flex; flex-direction: column; gap: 0.45rem; }
+.form__label { font-size: var(--sm); font-weight: 600; color: var(--navy); }
+.form__input, .form__select, .form__textarea {
+  font-family: var(--font-sans); font-size: var(--sm); color: var(--navy);
+  background: var(--bg); border: 1.5px solid var(--border-md);
+  border-radius: var(--radius); padding: 0.7rem 0.9rem;
+  transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease), background var(--t) var(--ease);
+  outline: none; width: 100%;
+}
+.form__input::placeholder, .form__textarea::placeholder { color: var(--silver); }
+.form__input:focus, .form__select:focus, .form__textarea:focus {
+  border-color: var(--teal); box-shadow: 0 0 0 3px rgba(79,174,170,0.14);
+  background: var(--white);
+}
+.form__textarea { resize: vertical; min-height: 130px; line-height: 1.6; }
+.form__select {
+  appearance: none; cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath d='M2 4l4 4 4-4' fill='none' stroke='%236B7483' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 0.9rem center;
+  padding-right: 2.5rem;
+}
+
+/* ── Talk topics ── */
+.topic-card { border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.75rem; background: var(--white); transition: border-color var(--t) var(--ease), box-shadow var(--t) var(--ease); }
+.topic-card:hover { border-color: var(--teal); box-shadow: var(--shadow); }
+.topic-card__num { font-family: var(--font-serif); font-size: 1.75rem; font-weight: 400; color: var(--silver); line-height: 1; margin-bottom: 0.875rem; }
+.topic-card__title { font-family: var(--font-serif); font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 0.45rem; }
+.topic-card__body { font-size: var(--sm); line-height: 1.65; color: var(--muted); }
+
+/* ── Footer ── */
+.footer { background: var(--navy); color: rgba(247,244,239,0.7); padding-top: clamp(3rem,5vw,4.5rem); padding-bottom: 0; }
+.footer__inner { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: clamp(2rem,4vw,4rem); padding-bottom: clamp(2rem,4vw,3.5rem); border-bottom: 1px solid rgba(255,255,255,0.08); }
+.footer__brand { display: flex; flex-direction: column; gap: 0.5rem; }
+.footer__wordmark { font-family: var(--font-sans); font-size: 1rem; font-weight: 700; letter-spacing: 0.16em; color: var(--white); }
+.footer__tagline { font-size: var(--xs); letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); }
+.footer__desc { font-size: var(--sm); line-height: 1.65; color: rgba(247,244,239,0.48); margin-top: 0.625rem; max-width: 260px; }
+.footer__col h4 { font-size: var(--xs); font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--white); margin-bottom: 1.125rem; }
+.footer__col ul { display: flex; flex-direction: column; gap: 0.625rem; }
+.footer__col a { font-size: var(--sm); color: rgba(247,244,239,0.55); transition: color var(--t) var(--ease); }
+.footer__col a:hover { color: var(--teal); }
+.footer__bottom {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 1rem; padding-block: 1.375rem;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.footer__rights { font-size: var(--xs); color: rgba(247,244,239,0.3); letter-spacing: 0.02em; }
+.footer__social { display: flex; gap: 0.75rem; }
+.footer__social a {
+  width: 34px; height: 34px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(247,244,239,0.45); transition: all var(--t) var(--ease);
+}
+.footer__social a:hover { border-color: var(--teal); color: var(--teal); }
+.footer__social svg { width: 14px; height: 14px; }
+
+/* ── Reveal animations ── */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-l { opacity: 0; transform: translateX(-24px); transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease); }
+.reveal-l.visible { opacity: 1; transform: translateX(0); }
+.reveal-r { opacity: 0; transform: translateX(24px); transition: opacity var(--t-slow) var(--ease), transform var(--t-slow) var(--ease); }
+.reveal-r.visible { opacity: 1; transform: translateX(0); }
+.d1 { transition-delay: 70ms; }
+.d2 { transition-delay: 140ms; }
+.d3 { transition-delay: 210ms; }
+.d4 { transition-delay: 280ms; }
+.d5 { transition-delay: 350ms; }
+
+/* Hero entrance */
+.hero__eyebrow { animation: fadeUp 0.65s var(--ease) 0.15s both; }
+.hero__headline { animation: fadeUp 0.65s var(--ease) 0.3s both; }
+.hero__lead     { animation: fadeUp 0.65s var(--ease) 0.43s both; }
+.hero__actions  { animation: fadeUp 0.65s var(--ease) 0.54s both; }
+.hero__scroll   { animation: fadeIn 0.6s ease 0.9s both; }
+@keyframes fadeUp { from { opacity:0; transform:translateY(22px); } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
+
+/* ── Utility ── */
+.sr-only { position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0; }
+.text-center { text-align: center; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.mt-12 { margin-top: 3rem; }
+.mb-4 { margin-bottom: 1rem; }
+.mb-6 { margin-bottom: 1.5rem; }
+.mb-8 { margin-bottom: 2rem; }
+
+/* ── Responsive ── */
+@media (max-width: 1100px) {
+  .grid-2 { grid-template-columns: 1fr; }
+  .intro-dark__layout { grid-template-columns: 1fr; gap: 2rem; }
+  .values-grid { grid-template-columns: repeat(3,1fr); }
+  .dim { grid-template-columns: 52px 1fr; }
+  .dim__arrow { display: none; }
+  .footer__inner { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-4 { grid-template-columns: repeat(2,1fr); }
+  .stats-bar__inner { grid-template-columns: repeat(2,1fr); }
+  .nav__links, .nav__cta { display: none; }
+  .nav__toggle { display: flex; }
+  .values-grid { grid-template-columns: repeat(2,1fr); }
+  .form__row { grid-template-columns: 1fr; }
+  .dim { grid-template-columns: 1fr; gap: 0.625rem; }
+  .dim__num { font-size: 1.5rem; }
+  .footer__inner { grid-template-columns: 1fr; gap: 2rem; }
+  .footer__desc { max-width: 100%; }
+}
+@media (max-width: 480px) {
+  .values-grid { grid-template-columns: 1fr; }
+  .hero__actions { flex-direction: column; align-items: flex-start; }
+  .cta-dark__actions { flex-direction: column; align-items: center; }
+  .btn { justify-content: center; }
+  .grid-4 { grid-template-columns: 1fr; }
+  .stats-bar__inner { grid-template-columns: repeat(2,1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, .reveal, .reveal-l, .reveal-r { animation: none !important; transition-duration: 0.01ms !important; opacity: 1 !important; transform: none !important; }
+}
+
+/* ── Real logo image in nav ── */
+.nav__logo-img {
+  width: auto;
+  height: 36px;
+  max-width: 160px;
+  object-fit: contain;
+  display: block;
+  /* On dark nav: white version via filter (logo has dark mark + text) */
+  transition: filter var(--t) var(--ease), opacity var(--t) var(--ease);
+}
+/* When nav is on dark background: invert to white */
+.nav--dark:not(.scrolled) .nav__logo-img {
+  filter: brightness(0) invert(1);
+}
+/* After scroll or on light pages: show natural colors */
+.nav.scrolled .nav__logo-img,
+.nav:not(.nav--dark) .nav__logo-img {
+  filter: none;
+}
+
+/* Mobile nav brand */
+.nav__mobile-brand {
+  padding-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.nav__mobile-brand img {
+  height: 28px;
+  width: auto;
+}
+
+
+/* Logo: fixed size, never changes on scroll */
+.nav__logo-img {
+  height: 40px !important;
+  max-width: 200px !important;
+}
+.nav__mobile-logo {
+  height: 46px;
+  width: auto;
+  object-fit: contain;
+}
+.nav.scrolled .btn--light,
+.nav:not(.nav--dark) .btn--light {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.nav.scrolled .btn--light:hover,
+.nav:not(.nav--dark) .btn--light:hover {
+  background: var(--teal-dim);
+  border-color: var(--teal-dim);
+}
+.page-hero {
+  min-height: 100svh !important;
+  padding-top: clamp(7rem, 12vw, 9rem) !important;
+  padding-bottom: clamp(3rem, 6vw, 5rem) !important;
+  justify-content: center !important;
+}
+.page-hero .wrap,
+.hero .wrap { position: relative; z-index: 1; }
+section { scroll-margin-top: 90px; }
+.nav__inner { min-height: 58px; }
+.nav.scrolled .nav__inner { min-height: 52px; }
+html, body { max-width: 100%; overflow-x: hidden; }
+@media (max-width: 900px) {
+  .page-hero { min-height: 100svh !important; }
+  .page-hero__bg svg { right: -35%; top: 7%; width: 110%; }
+  .page-hero__title { max-width: 100%; }
+  .page-hero__lead { max-width: 100%; }
+}
+@media (max-width: 768px) {
+  .nav { padding-block: 0.7rem; }
+  .nav__logo-img { height: 36px !important; max-width: 170px !important; }
+  .nav__mobile { top: 68px; overflow-y: auto; }
+  .hero, .page-hero { padding-inline: 0; }
+  .hero__content { max-width: 100%; }
+  .hero__actions { width: 100%; }
+  .hero__actions .btn { width: 100%; justify-content: center; }
+  .btn { max-width: 100%; white-space: normal; text-align: center; }
+  .footer__bottom { align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .nav__logo-img { height: 32px !important; max-width: 150px !important; }
+  .nav__inner { gap: 0.75rem; }
+  .page-hero { padding-top: 6.5rem !important; }
+  .page-hero__title, .hero__headline { word-break: normal; overflow-wrap: break-word; }
+}
+
+
+/* ── NAV: definitive overrides (single source of truth) ─────── */
+
+/* Logo: same size always, never shifts */
+.nav__logo-img {
+  height: 40px !important;
+  width: auto !important;
+  max-width: 200px !important;
+  object-fit: contain;
+  display: block;
+}
+
+/* Logo color version: dark pages → white logo, light pages → color logo */
+.nav--dark:not(.scrolled) .nav__logo-img {
+  content: url('/silvora.com/assets/silvora-logo-dark-bg.svg');
+  filter: none !important;
+}
+.nav.scrolled .nav__logo-img,
+.nav:not(.nav--dark) .nav__logo-img {
+  content: url('/silvora.com/assets/silvora-logo.png');
+  filter: none !important;
+}
+
+/* "Get started" CTA button
+   On navy hero  → solid cream/sand capsule with navy text (max contrast)
+   On beige/scroll → solid navy capsule with white text               */
+.nav--dark:not(.scrolled) .btn--light {
+  background: var(--cream) !important;
+  color: var(--navy) !important;
+  border: 1.5px solid var(--cream) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.20) !important;
+  font-weight: 700 !important;
+}
+.nav--dark:not(.scrolled) .btn--light:hover {
+  background: #fff !important;
+  border-color: #fff !important;
+  transform: translateY(-1px);
+}
+.nav.scrolled .btn--light,
+.nav:not(.nav--dark) .btn--light {
+  background: var(--navy) !important;
+  color: #fff !important;
+  border-color: var(--navy) !important;
+  box-shadow: 0 4px 14px rgba(31,42,68,0.18) !important;
+  font-weight: 700 !important;
+}
+.nav.scrolled .btn--light:hover,
+.nav:not(.nav--dark) .btn--light:hover {
+  background: var(--teal) !important;
+  border-color: var(--teal) !important;
+  transform: translateY(-1px);
+}
+
+/* Responsive logo sizes */
+@media (max-width: 900px) {
+  .nav__logo-img { height: 36px !important; max-width: 180px !important; }
+}
+@media (max-width: 520px) {
+  .nav__logo-img { height: 32px !important; max-width: 155px !important; }
+}
+
+/* Home framework list: leave breathing room between the left accent line and numbers */
+.dimensions__list { overflow: hidden; }
+.dim {
+  padding-left: clamp(1.75rem, 3vw, 2.75rem) !important;
+  grid-template-columns: minmax(72px, 92px) 1fr auto !important;
+}
+.dim::before { left: 0.25rem !important; }
+@media (max-width: 700px) {
+  .dim {
+    padding-left: 1.25rem !important;
+    grid-template-columns: 58px 1fr !important;
   }
-
-  return value;
-}
-function applyLanguage(lang) {
-  localStorage.setItem('silvora-lang', lang);
-  document.documentElement.lang = lang;
-
-  document.querySelectorAll('[data-i18n]').forEach(el => {
-    const key = el.dataset.i18n;
-    if (strings[lang]?.[key]) el.textContent = strings[lang][key];
-  });
-
-  const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, walkerFilter);
-  const textNodes = [];
-  while (walker.nextNode()) textNodes.push(walker.currentNode);
-  textNodes.forEach(node => {
-    if (!originalText.has(node)) originalText.set(node, node.nodeValue);
-    const source = originalText.get(node);
-    const leading = source.match(/^\s*/)?.[0] || '';
-    const trailing = source.match(/\s*$/)?.[0] || '';
-    const clean = source.trim();
-    node.nodeValue = lang === 'es' ? source : leading + translateValue(clean, lang) + trailing;
-  });
-
-  document.querySelectorAll('[placeholder], [aria-label], option').forEach(el => {
-    if (!originalAttrs.has(el)) {
-      originalAttrs.set(el, { placeholder: el.getAttribute('placeholder'), aria: el.getAttribute('aria-label'), text: el.textContent });
-    }
-    const attrs = originalAttrs.get(el);
-    if (attrs.placeholder !== null) el.setAttribute('placeholder', lang === 'es' ? attrs.placeholder : translateValue(attrs.placeholder, lang));
-    if (attrs.aria !== null) el.setAttribute('aria-label', lang === 'es' ? attrs.aria : translateValue(attrs.aria, lang));
-    if (el.tagName === 'OPTION') el.textContent = lang === 'es' ? attrs.text : translateValue(attrs.text, lang);
-  });
-
-
-  const pageMeta = {
-    'index.html': {
-      es: { title: 'Silvora · Human Value Evolution', description: 'Framework estratégico para evolucionar el valor humano en la era de la IA y la longevidad.' },
-      en: { title: 'Silvora · Human Value Evolution', description: 'Strategic framework to evolve human value in the age of AI and longevity.' }
-    },
-    'about.html': {
-      es: { title: 'Nosotros · Silvora', description: 'Conocé la historia, la visión y el equipo detrás de Silvora. Creamos el framework Human Value Evolution para la era de la IA y la longevidad.' },
-      en: { title: 'About · Silvora', description: 'Learn about the story, vision and team behind Silvora. We created the Human Value Evolution framework for the age of AI and longevity.' }
-    },
-    'services.html': {
-      es: { title: 'Servicios · Silvora', description: 'Servicios de Silvora para personas, equipos y organizaciones. Talleres, programas, consultoría y acompañamiento estratégico en Human Value Evolution.' },
-      en: { title: 'Services · Silvora', description: 'Silvora services for individuals, teams and organizations. Workshops, programs, consulting and strategic guidance in Human Value Evolution.' }
-    },
-    'lab.html': {
-      es: { title: 'Human Value Evolution Lab · Silvora', description: 'Las cinco dimensiones del Human Value Evolution Lab: World Evolution, Human Skills, AI Capability, Personal Care y Human Value Design.' },
-      en: { title: 'Human Value Evolution Lab · Silvora', description: 'The five dimensions of the Human Value Evolution Lab: World Evolution, Human Skills, AI Capability, Personal Care and Human Value Design.' }
-    },
-    'speaking.html': {
-      es: { title: 'Speaking · Silvora', description: 'Conferencias y keynotes de Silvora sobre Human Value Evolution, inteligencia artificial, longevidad y liderazgo para eventos corporativos y congresos.' },
-      en: { title: 'Speaking · Silvora', description: 'Silvora talks and keynotes on Human Value Evolution, artificial intelligence, longevity and leadership for corporate events and conferences.' }
-    },
-    'contact.html': {
-      es: { title: 'Contacto · Silvora', description: 'Contactá a Silvora para comenzar tu proceso de Human Value Evolution. Programas individuales, equipos y organizaciones.' },
-      en: { title: 'Contact · Silvora', description: 'Contact Silvora to begin your Human Value Evolution process. Individual, team and organizational programs.' }
-    }
-  };
-  const pageKey = currentPath || 'index.html';
-  const meta = pageMeta[pageKey]?.[lang];
-  if (meta) {
-    document.title = meta.title;
-    const desc = document.querySelector('meta[name="description"]');
-    if (desc) desc.setAttribute('content', meta.description);
-    const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', meta.title);
-    const ogDesc = document.querySelector('meta[property="og:description"]');
-    if (ogDesc) ogDesc.setAttribute('content', meta.description);
-  }
-
-  document.querySelectorAll('[data-lang-es]').forEach(btn => btn.classList.toggle('lang-active', lang === 'es'));
-  document.querySelectorAll('[data-lang-en]').forEach(btn => btn.classList.toggle('lang-active', lang === 'en'));
+  .dim__arrow { grid-column: 2; }
 }
 
-document.querySelectorAll('[data-lang-es]').forEach(btn => btn.addEventListener('click', () => applyLanguage('es')));
-document.querySelectorAll('[data-lang-en]').forEach(btn => btn.addEventListener('click', () => applyLanguage('en')));
-applyLanguage(localStorage.getItem('silvora-lang') || 'es');
+
+/* Silvora editorial image system */
+.image-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  background: var(--cream);
+  box-shadow: 0 18px 50px rgba(31, 42, 68, 0.14);
+}
+.image-card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 600ms var(--ease);
+}
+.image-card:hover img { transform: scale(1.02); }
+.image-card--hero { aspect-ratio: 4 / 5; max-height: 660px; }
+.image-card--wide { aspect-ratio: 16 / 10; }
+.image-card--portrait { aspect-ratio: 4 / 5; }
+.hero__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(340px, 0.92fr);
+  gap: clamp(2.5rem, 5vw, 5.5rem);
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+.hero__media { position: relative; z-index: 2; justify-self: end; width: 100%; max-width: 560px; }
+.hero__media .image-card { border: 1px solid rgba(247,244,239,0.18); box-shadow: 0 24px 70px rgba(0,0,0,0.24); }
+.media-section { padding-block: clamp(3rem, 7vw, 6.5rem); }
+.media-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 5vw, 5rem);
+  align-items: center;
+}
+.media-copy { max-width: 620px; }
+@media (max-width: 1080px) {
+  .hero__layout { grid-template-columns: 1fr; }
+  .hero__media { order: 2; justify-self: center; max-width: 680px; margin-top: 1.5rem; }
+  .hero__content { order: 1; }
+  .image-card--hero { aspect-ratio: 16 / 10; max-height: 420px; }
+}
+@media (max-width: 960px) {
+  .media-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+  .image-card { border-radius: 18px; }
+  .media-section { padding-block: 2.75rem; }
+}
