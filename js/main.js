@@ -1,4 +1,4 @@
-/* SILVORA · main.js */
+/* SILVORA · main.js v2 */
 
 // ── Navigation scroll state ──
 const nav = document.querySelector('.nav');
@@ -13,7 +13,7 @@ navToggle?.addEventListener('click', () => {
   const open = navToggle.classList.toggle('open');
   navMobile?.classList.toggle('open', open);
   document.body.style.overflow = open ? 'hidden' : '';
-  navToggle.setAttribute('aria-expanded', open);
+  navToggle.setAttribute('aria-expanded', String(open));
 });
 
 navMobile?.querySelectorAll('.nav__mobile-link').forEach(l => {
@@ -39,60 +39,69 @@ document.querySelectorAll('.nav__link').forEach(l => {
 });
 
 // ── Scroll reveal ──
-const observer = new IntersectionObserver(entries => {
+const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) {
       e.target.classList.add('visible');
-      observer.unobserve(e.target);
+      revealObserver.unobserve(e.target);
     }
   });
-}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+}, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
 
-document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => observer.observe(el));
+document.querySelectorAll('.reveal, .reveal-l, .reveal-r').forEach(el => revealObserver.observe(el));
 
-// ── Language toggle (ES/EN) ──
+// ── Language toggle (ES / EN) ──
 const strings = {
   es: {
-    'nav.dimensions': 'Dimensiones',
-    'nav.about': 'Nosotros',
+    'nav.about':    'Nosotros',
     'nav.services': 'Servicios',
     'nav.speaking': 'Speaking',
-    'nav.lab': 'Lab',
-    'nav.contact': 'Contacto',
-    'nav.cta': 'Comenzar',
-    'footer.rights': '© 2025 Silvora. Todos los derechos reservados.',
+    'nav.lab':      'Lab',
+    'nav.contact':  'Contacto',
+    'nav.cta':      'Comenzar',
+    'footer.rights':  '© 2025 Silvora. Todos los derechos reservados.',
     'footer.tagline': 'Reinvención · Creación · Evolución',
   },
   en: {
-    'nav.dimensions': 'Dimensions',
-    'nav.about': 'About',
+    'nav.about':    'About',
     'nav.services': 'Services',
     'nav.speaking': 'Speaking',
-    'nav.lab': 'Lab',
-    'nav.contact': 'Contact',
-    'nav.cta': 'Get started',
-    'footer.rights': '© 2025 Silvora. All rights reserved.',
+    'nav.lab':      'Lab',
+    'nav.contact':  'Contact',
+    'nav.cta':      'Get started',
+    'footer.rights':  '© 2025 Silvora. All rights reserved.',
     'footer.tagline': 'Reinvention · Creation · Evolution',
   }
 };
 
-let lang = localStorage.getItem('silvora-lang') || (navigator.language.startsWith('en') ? 'en' : 'es');
+// Persist across pages via localStorage
+let lang = localStorage.getItem('silvora-lang') ||
+           (navigator.language.startsWith('en') ? 'en' : 'es');
 
 function applyLang(l) {
   lang = l;
   localStorage.setItem('silvora-lang', l);
   document.documentElement.lang = l;
+
   document.querySelectorAll('[data-i18n]').forEach(el => {
     const key = el.dataset.i18n;
-    if (strings[l][key]) el.textContent = strings[l][key];
+    if (strings[l] && strings[l][key]) el.textContent = strings[l][key];
   });
-  document.querySelectorAll('[data-lang]').forEach(btn => {
-    btn.textContent = l === 'es' ? 'EN' : 'ES';
+
+  // Update all lang switchers: highlight active
+  document.querySelectorAll('[data-lang-es]').forEach(btn => {
+    btn.classList.toggle('lang-active', l === 'es');
+  });
+  document.querySelectorAll('[data-lang-en]').forEach(btn => {
+    btn.classList.toggle('lang-active', l === 'en');
   });
 }
 
-document.querySelectorAll('[data-lang]').forEach(btn => {
-  btn.addEventListener('click', () => applyLang(lang === 'es' ? 'en' : 'es'));
+document.querySelectorAll('[data-lang-es]').forEach(btn => {
+  btn.addEventListener('click', () => applyLang('es'));
+});
+document.querySelectorAll('[data-lang-en]').forEach(btn => {
+  btn.addEventListener('click', () => applyLang('en'));
 });
 
 applyLang(lang);
