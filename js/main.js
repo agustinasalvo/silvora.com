@@ -1,89 +1,36 @@
 /* SILVORA · main.js */
-
-/* ══════════════════════════════════════════════
-   MOBILE MENU — FIX DEFINITIVO
-   
-   backdrop-filter en .nav crea un stacking context.
-   Cualquier position:fixed dentro queda atrapado
-   en los 68px del nav. Fix: mover el panel al
-   <body> con JS apenas carga el DOM.
-   ══════════════════════════════════════════════ */
-
 const nav       = document.querySelector('.nav');
 const navToggle = document.querySelector('.nav__toggle');
-let   navMobile = document.getElementById('mobile-menu');
+const navMobile = document.getElementById('mobile-menu');
 
-// Mover el panel al body ANTES de cualquier otra cosa
-if (navMobile) {
-  document.body.appendChild(navMobile);
-}
-
-/* ── Scroll ── */
 window.addEventListener('scroll', () => {
   nav?.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-/* ── Cerrar ── */
 function closeMobileMenu() {
   navToggle?.classList.remove('open');
   navMobile?.classList.remove('open');
-  document.body.style.overflow        = '';
+  document.body.style.overflow = '';
   document.documentElement.style.overflow = '';
   navToggle?.setAttribute('aria-expanded', 'false');
 }
 
-/* ── Abrir/cerrar ── */
 navToggle?.addEventListener('click', (e) => {
   e.stopPropagation();
   const open = navToggle.classList.toggle('open');
   navMobile?.classList.toggle('open', open);
-  document.body.style.overflow        = open ? 'hidden' : '';
+  document.body.style.overflow = open ? 'hidden' : '';
   document.documentElement.style.overflow = open ? 'hidden' : '';
   navToggle.setAttribute('aria-expanded', String(open));
 });
+navMobile?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
+document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMobileMenu(); });
+window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMobileMenu(); }, { passive: true });
 
-/* Botón X del topbar interno */
-const mobileCloseBtn = document.getElementById('mobile-close-btn');
-if (mobileCloseBtn) {
-  mobileCloseBtn.addEventListener('click', closeMobileMenu);
-}
-
-/* Cerrar al tocar un link del menú */
-navMobile?.querySelectorAll('a').forEach(link =>
-  link.addEventListener('click', closeMobileMenu)
-);
-
-/* Cerrar con ESC */
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeMobileMenu();
-});
-
-/* Cerrar si se pasa a desktop */
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 768) closeMobileMenu();
-}, { passive: true });
-
-/* ── Link activo ── */
 const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.nav__link, .nav__mobile-link').forEach(link => {
   if (link.getAttribute('href') === currentPath) link.classList.add('active');
 });
-
-/* ── Reveal on scroll ── */
-const revealItems = document.querySelectorAll('.reveal, .reveal-l, .reveal-r');
-if ('IntersectionObserver' in window) {
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-  revealItems.forEach(el => obs.observe(el));
-} else {
-  revealItems.forEach(el => el.classList.add('visible'));
-}
 
 const revealItems = document.querySelectorAll('.reveal, .reveal-l, .reveal-r');
 if ('IntersectionObserver' in window) {
