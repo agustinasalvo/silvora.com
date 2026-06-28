@@ -3,19 +3,24 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Human Value Evolution Lab · Silvora</title>
-<meta name="description" content="Las cinco dimensiones del Human Value Evolution Lab: World Evolution, Human Skills, AI Capability, Personal Care y Human Value Design."/>
+<title>Silvora · Human Value Evolution</title>
+<meta name="description" content="Framework estratégico para evolucionar el valor humano en la era de la IA y la longevidad. Acompañamos personas, equipos y organizaciones."/>
+<meta property="og:title" content="Silvora · Human Value Evolution"/>
+<meta property="og:description" content="Framework estratégico para evolucionar el valor humano en la era de la IA y la longevidad."/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://silvora.com/"/>
   <link rel="icon" type="image/webp" href="/silvora.com/assets/favicon.webp"/>
-  <link rel="canonical" href="https://agustinasalvo.github.io/silvora.com/lab/"/>
+  <link rel="canonical" href="https://agustinasalvo.github.io/silvora.com/"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/silvora.com/css/styles.css"/>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Silvora","url":"https://agustinasalvo.github.io/silvora.com","description":"Human Value Evolution","sameAs":["https://www.linkedin.com/company/silvoratalent"]}</script>
 </head>
 <body>
 
 <header>
-<nav class="nav nav--dark">
+<nav class="nav nav--dark" aria-label="Principal">
   <div class="wrap">
     <div class="nav__inner">
       <a href="/silvora.com/" class="nav__logo" aria-label="Silvora inicio">
@@ -24,7 +29,7 @@
       <div class="nav__links">
         <a href="/silvora.com/about/"    class="nav__link" data-i18n="nav.about">Nosotros</a>
         <a href="/silvora.com/services/" class="nav__link" data-i18n="nav.services">Servicios</a>
-        <a href="/silvora.com/lab/"      class="nav__link active" data-i18n="nav.lab">Lab</a>
+        <a href="/silvora.com/lab/"      class="nav__link" data-i18n="nav.lab">Lab</a>
         <a href="/silvora.com/speaking/" class="nav__link" data-i18n="nav.speaking">Speaking</a>
         <a href="/silvora.com/contact/"  class="nav__link" data-i18n="nav.contact">Contacto</a>
       </div>
@@ -42,209 +47,327 @@
       </button>
     </div>
   </div>
+  <div id="mobile-menu" class="nav__mobile">
+    <div class="nav__mobile-brand">
+      <img src="/silvora.com/assets/silvora-logo.png" alt="Silvora" class="nav__mobile-logo"/>
+    </div>
+    <a href="/silvora.com/about/"    class="nav__mobile-link" data-i18n="nav.about">Nosotros</a>
+    <a href="/silvora.com/services/" class="nav__mobile-link" data-i18n="nav.services">Servicios</a>
+    <a href="/silvora.com/lab/"      class="nav__mobile-link" data-i18n="nav.lab">Lab</a>
+    <a href="/silvora.com/speaking/" class="nav__mobile-link" data-i18n="nav.speaking">Speaking</a>
+    <a href="/silvora.com/contact/"  class="nav__mobile-link" data-i18n="nav.contact">Contacto</a>
+    <div class="nav__mobile-lang">
+      <button class="lang-btn" data-lang-es>ES</button>
+      <button class="lang-btn" data-lang-en>EN</button>
+    </div>
+    <a href="/silvora.com/contact/" class="btn btn--primary mt-4" style="margin-top:1.5rem;" data-i18n="nav.cta">Comenzar</a>
+  </div>
 </nav>
 </header>
 
 <main>
 
-<section class="page-hero">
-  <div class="page-hero__bg" aria-hidden="true">
-    <svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="250" stroke="#4FAEAA" stroke-width="1"/><circle cx="300" cy="300" r="180" stroke="#B87333" stroke-width="0.5"/><circle cx="300" cy="300" r="110" stroke="#4FAEAA" stroke-width="0.5"/></svg>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero__bg" aria-hidden="true">
+    <svg viewBox="0 0 600 700" fill="none">
+      <path d="M300 0Q500 150 500 350Q500 550 300 700" stroke="#4FAEAA" stroke-width="1" fill="none"/>
+      <path d="M300 0Q470 120 470 350Q470 580 300 700" stroke="#4FAEAA" stroke-width="0.7" fill="none"/>
+      <path d="M300 0Q440 90 440 350Q440 610 300 700" stroke="#B87333" stroke-width="0.7" fill="none"/>
+      <circle cx="300" cy="350" r="200" stroke="#4FAEAA" stroke-width="0.5" fill="none"/>
+      <circle cx="300" cy="350" r="290" stroke="#1F2A44" stroke-width="0.5" fill="none"/>
+    </svg>
   </div>
   <div class="wrap">
-    <div class="page-hero__eyebrow"><span>Human Value Evolution Lab</span></div>
-    <h1 class="page-hero__title">Cinco dimensiones<br><em>para evolucionar.</em></h1>
-    <p class="page-hero__lead">Un framework estratégico que integra la comprensión del mundo, el desarrollo humano, la inteligencia artificial, el bienestar y el diseño de valor diferencial.</p>
+    <div class="hero__layout">
+      <div class="hero__content">
+      <div class="hero__eyebrow">
+        <span class="hero__dot"></span>
+        <span class="eyebrow">Human Value Evolution Lab</span>
+      </div>
+      <h1 class="hero__headline">
+        Evolucionamos<br>
+        <em>el valor humano.</em><br>
+        Impulsamos<br>
+        <span class="t">el futuro.</span>
+      </h1>
+      <p class="hero__lead">Un marco estratégico para evolucionar el valor humano en la era de la inteligencia artificial y la longevidad.</p>
+      <div class="hero__actions">
+        <a href="/silvora.com/lab/" class="btn btn--light">Ver las dimensiones
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="/silvora.com/about/" class="btn btn--ghost" style="color:rgba(247,244,239,0.7);">Conocer Silvora</a>
+      </div>
+    </div>
+    <div class="hero__media reveal-r">
+      <figure class="image-card image-card--hero">
+        <img src="/silvora.com/assets/images/hero-team.webp" alt="Silvora team in a strategic leadership session" loading="eager" decoding="async">
+      </figure>
+    </div>
+  </div>
+</div>
+  <div class="hero__scroll" aria-hidden="true">
+    <div class="hero__scroll-line"></div>
   </div>
 </section>
 
-<!-- FRAMEWORK INTRO -->
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Human Value Evolution</span>
+    <span class="marquee-item">World Evolution</span>
+    <span class="marquee-item">Human Skills</span>
+    <span class="marquee-item">AI Capability</span>
+    <span class="marquee-item">Personal Care</span>
+    <span class="marquee-item">Human Value Design</span>
+    <span class="marquee-item">Talent Maturity Assessment</span>
+    <span class="marquee-item">Evolution Sprint</span>
+    <span class="marquee-item">Human Value Evolution</span>
+    <span class="marquee-item">World Evolution</span>
+    <span class="marquee-item">Human Skills</span>
+    <span class="marquee-item">AI Capability</span>
+    <span class="marquee-item">Personal Care</span>
+    <span class="marquee-item">Human Value Design</span>
+    <span class="marquee-item">Talent Maturity Assessment</span>
+    <span class="marquee-item">Evolution Sprint</span>
+  </div>
+</div>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="wrap">
+    <div class="stats-bar__inner">
+      <div class="stat"><div class="stat__num">5</div><div class="stat__label">Dimensiones del framework</div></div>
+      <div class="stat"><div class="stat__num">+200</div><div class="stat__label">Líderes acompañados</div></div>
+      <div class="stat"><div class="stat__num">+50</div><div class="stat__label">Organizaciones</div></div>
+      <div class="stat"><div class="stat__num">12</div><div class="stat__label">Países</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- INTRO DARK -->
 <section class="intro-dark section">
   <div class="wrap">
     <div class="intro-dark__layout">
       <div class="reveal-l">
-        <p class="intro-dark__label">El framework</p>
+        <p class="intro-dark__label">El recorrido</p>
         <h2 class="intro-dark__title">No se trata solo de adaptarse al futuro,<br><em>sino de diseñarlo.</em></h2>
       </div>
       <div class="reveal-r">
-        <p class="intro-dark__body">El Human Value Evolution Lab es el corazón intelectual de Silvora. Cada dimensión responde a una pregunta crítica sobre el futuro del valor humano. Juntas, forman un recorrido integrado que transforma la manera en que personas y organizaciones crean valor en la era de la IA y la longevidad.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- DIMENSIONS FULL -->
-<section class="section" style="background:var(--bg);">
-  <div class="wrap">
-
-    <!-- shared dimension layout -->
-    <style>
-      .dim-full { display:grid; grid-template-columns:1fr 1.65fr; gap:clamp(2.5rem,5vw,5.5rem); align-items:start; padding-block:clamp(2.5rem,5vw,4.5rem); border-bottom:1px solid var(--border); }
-      .dim-full__meta {}
-      .dim-full__num { font-family:var(--font-serif); font-size:clamp(3.5rem,7vw,6rem); font-weight:400; color:var(--silver); line-height:1; letter-spacing:-0.03em; margin-bottom:0.875rem; }
-      .dim-full__verb { font-size:var(--xs); font-weight:600; letter-spacing:0.16em; text-transform:uppercase; color:var(--teal); margin-bottom:0.625rem; }
-      .dim-full__name { font-family:var(--font-serif); font-size:var(--h2); font-weight:600; color:var(--navy); line-height:1.12; }
-      .dim-full__q { font-family:var(--font-serif); font-size:var(--h3); font-style:italic; color:var(--navy); margin-bottom:1.25rem; line-height:1.32; }
-      .dim-tools { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; margin-bottom:1.75rem; }
-      .dim-tools__box { background:var(--white); border:1px solid var(--border); border-radius:var(--radius); padding:1.125rem; }
-      .dim-tools__label { font-size:var(--xs); font-weight:700; letter-spacing:0.12em; text-transform:uppercase; margin-bottom:0.5rem; }
-      .dim-tools__label--teal { color:var(--teal); }
-      .dim-tools__label--copper { color:var(--copper); }
-      .dim-tools__list { display:flex; flex-direction:column; gap:0.35rem; }
-      .dim-tools__list li { font-size:var(--sm); color:var(--muted); }
-      .dim-tools__list li::before { content:'· '; color:var(--teal); }
-      @media(max-width:900px){ .dim-full { grid-template-columns:1fr; gap:1.5rem; } }
-    </style>
-
-    <!-- 01 -->
-    <div class="dim-full">
-      <div class="dim-full__meta reveal-l">
-        <div class="dim-full__num">01</div>
-        <div class="dim-full__verb">Entender</div>
-        <h2 class="dim-full__name">World Evolution</h2>
-      </div>
-      <div class="reveal-r">
-        <p class="dim-full__q">¿Qué está cambiando y qué impacto tendrá?</p>
-        <p class="lead mb-8">Comprender las fuerzas que transforman el mundo del trabajo, la economía y la sociedad para anticipar escenarios, identificar oportunidades y tomar mejores decisiones estratégicas.</p>
-        <div class="dim-tools">
-          <div class="dim-tools__box">
-            <p class="dim-tools__label dim-tools__label--teal">Agenda</p>
-            <ul class="dim-tools__list"><li>Megatendencias y futuros del trabajo</li><li>Impacto de la IA en industrias</li><li>Silver Economy y longevidad</li><li>Escenarios 2030–2040</li></ul>
-          </div>
-          <div class="dim-tools__box">
-            <p class="dim-tools__label dim-tools__label--copper">Herramientas</p>
-            <ul class="dim-tools__list"><li>Futures Mapping</li><li>Scenario Planning Canvas</li><li>Trend Radar</li><li>Impact Assessment</li></ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 02 -->
-    <div class="dim-full">
-      <div class="dim-full__meta reveal-l">
-        <div class="dim-full__num">02</div>
-        <div class="dim-full__verb">Desarrollar</div>
-        <h2 class="dim-full__name">Human Skills Evolution</h2>
-      </div>
-      <div class="reveal-r">
-        <p class="dim-full__q">¿Qué capacidades humanas serán más relevantes?</p>
-        <p class="lead mb-8">Desarrollar las capacidades que ganan valor cuando la tecnología acelera: adaptabilidad, pensamiento crítico, learnability, liderazgo, comunicación e influencia.</p>
-        <div class="dim-tools">
-          <div class="dim-tools__box">
-            <p class="dim-tools__label dim-tools__label--teal">Agenda</p>
-            <ul class="dim-tools__list"><li>Learnability y aprendizaje continuo</li><li>Pensamiento crítico</li><li>Comunicación intergeneracional</li><li>Liderazgo e influencia</li></ul>
-          </div>
-          <div class="dim-tools__box">
-            <p class="dim-tools__label dim-tools__label--copper">Herramientas</p>
-            <ul class="dim-tools__list"><li>Skills Mapping</li><li>Capability Assessment</li><li>Learning Roadmap</li><li>Leadership Framework</li></ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 03 -->
-    <div class="dim-full">
-      <div class="dim-full__meta reveal-l">
-        <div class="dim-full__num">03</div>
-        <div class="dim-full__verb">Amplificar</div>
-        <h2 class="dim-full__name">AI Capability Evolution</h2>
-      </div>
-      <div class="reveal-r">
-        <p class="dim-full__q">¿Cómo trabajar mejor con inteligencia artificial?</p>
-        <p class="lead mb-8">Amplificar las capacidades humanas mediante IA. Productividad aumentada, gestión inteligente del conocimiento y colaboración humano–IA para potenciar el desempeño.</p>
-        <div class="dim-tools">
-          <div class="dim-tools__box">
-            <p class="dim-tools__label dim-tools__label--teal">Agenda</p>
-            <ul class="dim-tools__list"><li>IA como infraestructura personal</li><li>Personal AI Management</li><li>Toma de decisiones con IA</li><li>Human + AI Collaboration</li></ul>
-          </div>
-          <div class="dim-tools__box">
-            <p class="dim-tools__label dim-tools__label--copper">Herramientas</p>
-            <ul class="dim-tools__list"><li>AI Playbook</li><li>Personal AI Stack</li><li>Knowledge Management System</li><li>Laboratorios prácticos</li></ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 04 -->
-    <div class="dim-full">
-      <div class="dim-full__meta reveal-l">
-        <div class="dim-full__num">04</div>
-        <div class="dim-full__verb">Sostener</div>
-        <h2 class="dim-full__name">Personal Care Evolution</h2>
-      </div>
-      <div class="reveal-r">
-        <p class="dim-full__q">¿Cómo sostener el rendimiento y el bienestar en una vida laboral más extensa?</p>
-        <p class="lead mb-8">La sostenibilidad humana como ventaja estratégica. Energía, salud mental, economía del cuidado y longevidad profesional para mantener el potencial en el largo plazo.</p>
-        <div class="dim-tools">
-          <div class="dim-tools__box">
-            <p class="dim-tools__label dim-tools__label--teal">Agenda</p>
-            <ul class="dim-tools__list"><li>Energía y rendimiento</li><li>Prevención del burnout</li><li>Economía del cuidado</li><li>Longevidad profesional</li></ul>
-          </div>
-          <div class="dim-tools__box">
-            <p class="dim-tools__label dim-tools__label--copper">Herramientas</p>
-            <ul class="dim-tools__list"><li>Energy Audit</li><li>Burnout Assessment</li><li>Sustainability Plan</li><li>Modelos de prevención</li></ul>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 05 -->
-    <div class="dim-full">
-      <div class="dim-full__meta reveal-l">
-        <div class="dim-full__num">05</div>
-        <div class="dim-full__verb">Diseñar</div>
-        <h2 class="dim-full__name">Human Value Design</h2>
-      </div>
-      <div class="reveal-r">
-        <p class="dim-full__q">¿Cómo crear valor diferencial en la era de la IA y la longevidad?</p>
-        <p class="lead mb-8">Diseñar el valor humano del futuro. Reinventar carreras, organizaciones y modelos de liderazgo para generar valor sostenible en contextos de transformación permanente.</p>
-        <div class="dim-tools">
-          <div class="dim-tools__box">
-            <p class="dim-tools__label dim-tools__label--teal">Agenda</p>
-            <ul class="dim-tools__list"><li>Reinvención profesional</li><li>Empleabilidad futura</li><li>Posicionamiento diferencial</li><li>Diseño de carrera</li></ul>
-          </div>
-          <div class="dim-tools__box">
-            <p class="dim-tools__label dim-tools__label--copper">Herramientas</p>
-            <ul class="dim-tools__list"><li>Human Value Canvas</li><li>Evolution Roadmap</li><li>90-Day Action Plan</li><li>Mentorías y peer learning</li></ul>
-          </div>
-        </div>
-        <a href="/silvora.com/contact/" class="btn btn--primary">Iniciar diagnóstico
+        <p class="intro-dark__body">Silvora acompaña a personas, equipos y organizaciones a través de un recorrido estructurado en cinco dimensiones que integra comprensión del mundo, desarrollo de capacidades, inteligencia artificial, bienestar y diseño de valor diferencial.</p>
+        <a href="/silvora.com/lab/" class="btn btn--light mt-8">Explorar el framework
           <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
     </div>
-
-    <!-- PLUS -->
-    <div style="background:var(--cream);border-radius:var(--radius-lg);padding:clamp(2rem,4vw,3rem);margin-top:2.5rem;" class="reveal">
-      <div class="dim-full" style="border:none;padding:0;">
-        <div>
-          <div style="font-family:var(--font-serif);font-size:clamp(3.5rem,7vw,6rem);font-weight:400;color:var(--copper);opacity:0.45;line-height:1;letter-spacing:-0.03em;margin-bottom:0.875rem;">+</div>
-          <div style="font-size:var(--xs);font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--copper);margin-bottom:0.625rem;">Integrar</div>
-          <h2 class="dim-full__name">Human Value Evolution Plan</h2>
-        </div>
-        <div>
-          <p class="lead mb-6">Síntesis e integración de las cinco dimensiones en una hoja de ruta personal y organizacional accionable. El punto de llegada y el inicio del siguiente ciclo de evolución.</p>
-          <a href="/silvora.com/contact/" class="btn btn--primary">Solicitar tu Plan
-            <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
   </div>
 </section>
 
+<!-- DIMENSIONS PREVIEW -->
+<section class="section" style="background:var(--bg);">
+  <div class="wrap">
+    <header class="section-header reveal">
+      <span class="eyebrow">Las cinco dimensiones</span>
+      <h2 class="h2 mt-6">Un framework para evolucionar</h2>
+    </header>
+    <div class="dimensions__list">
+      <div class="dim reveal">
+        <div class="dim__num">01</div>
+        <div>
+          <p class="dim__verb">Entender</p>
+          <h3 class="dim__name">World Evolution</h3>
+          <p class="dim__q">¿Qué está cambiando y qué impacto tendrá?</p>
+          <p class="dim__body">Comprender las fuerzas que transforman el trabajo, la economía y la sociedad.</p>
+        </div>
+        <a href="/silvora.com/lab/" class="dim__arrow">Explorar<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="dim reveal">
+        <div class="dim__num">02</div>
+        <div>
+          <p class="dim__verb">Desarrollar</p>
+          <h3 class="dim__name">Human Skills Evolution</h3>
+          <p class="dim__q">¿Qué capacidades humanas serán más relevantes?</p>
+          <p class="dim__body">Adaptabilidad, pensamiento crítico, liderazgo, comunicación e influencia.</p>
+        </div>
+        <a href="/silvora.com/lab/" class="dim__arrow">Explorar<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="dim reveal">
+        <div class="dim__num">03</div>
+        <div>
+          <p class="dim__verb">Amplificar</p>
+          <h3 class="dim__name">AI Capability Evolution</h3>
+          <p class="dim__q">¿Cómo trabajar mejor con inteligencia artificial?</p>
+          <p class="dim__body">IA aplicada al aprendizaje, productividad y colaboración humano–IA.</p>
+        </div>
+        <a href="/silvora.com/lab/" class="dim__arrow">Explorar<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="dim reveal">
+        <div class="dim__num">04</div>
+        <div>
+          <p class="dim__verb">Sostener</p>
+          <h3 class="dim__name">Personal Care Evolution</h3>
+          <p class="dim__q">¿Cómo sostener el rendimiento en una vida laboral más extensa?</p>
+          <p class="dim__body">Energía, salud mental, economía del cuidado y longevidad profesional.</p>
+        </div>
+        <a href="/silvora.com/lab/" class="dim__arrow">Explorar<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="dim reveal">
+        <div class="dim__num">05</div>
+        <div>
+          <p class="dim__verb">Diseñar</p>
+          <h3 class="dim__name">Human Value Design</h3>
+          <p class="dim__q">¿Cómo crear valor diferencial en la era de la IA?</p>
+          <p class="dim__body">Reinventar carreras, organizaciones y modelos de liderazgo.</p>
+        </div>
+        <a href="/silvora.com/lab/" class="dim__arrow">Explorar<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+      <div class="dim dim--plus reveal">
+        <div class="dim__num">+</div>
+        <div>
+          <p class="dim__verb">Integrar</p>
+          <h3 class="dim__name">Human Value Evolution Plan</h3>
+          <p class="dim__q">Hoja de ruta personal y organizacional.</p>
+          <p class="dim__body">Síntesis de las cinco dimensiones en un plan accionable con diagnóstico y próximos pasos.</p>
+        </div>
+        <a href="/silvora.com/contact/" class="dim__arrow">Diagnóstico<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE SERVE -->
+<section class="section" style="background:var(--white);">
+  <div class="wrap">
+    <div class="grid-2">
+      <div class="reveal-l">
+        <span class="eyebrow mb-6">¿A quién acompañamos?</span>
+        <h2 class="h2 mt-6 mb-6">Personas, equipos y organizaciones que quieren evolucionar.</h2>
+        <p class="lead mb-8">Acompañamos a líderes, profesionales en transición, equipos de alto rendimiento y organizaciones en transformación.</p>
+        <a href="/silvora.com/services/" class="btn btn--primary">Ver servicios
+          <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="audience-grid reveal-r">
+        <div class="audience-card">
+          <div class="audience-card__dot"></div>
+          <div>
+            <p class="audience-card__name">Personas</p>
+            <p class="audience-card__desc">Profesionales que buscan reinventarse y generar nuevo valor en la era de la IA y la longevidad.</p>
+          </div>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card__dot"></div>
+          <div>
+            <p class="audience-card__name">Equipos</p>
+            <p class="audience-card__desc">Grupos que necesitan desarrollar capacidades colectivas para operar en entornos de alta complejidad.</p>
+          </div>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card__dot"></div>
+          <div>
+            <p class="audience-card__name">Organizaciones</p>
+            <p class="audience-card__desc">Empresas que quieren evolucionar su cultura, talento y modelos de trabajo.</p>
+          </div>
+        </div>
+        <div class="audience-card">
+          <div class="audience-card__dot"></div>
+          <div>
+            <p class="audience-card__name">Instituciones</p>
+            <p class="audience-card__desc">Organismos gubernamentales comprometidos con el desarrollo del capital humano.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="section--sm" style="background:var(--cream);">
+  <div class="wrap">
+    <div class="values-grid reveal">
+      <div class="value-card">
+        <svg class="value-card__icon" viewBox="0 0 40 40" fill="none"><path d="M8 32L20 12L32 22L20 8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M28 8L32 8L32 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="value-card__name">Evolución</p>
+        <p class="value-card__desc">Progreso continuo hacia adelante.</p>
+      </div>
+      <div class="value-card">
+        <svg class="value-card__icon" viewBox="0 0 40 40" fill="none"><path d="M20 8C14 8 10 13 10 18C10 24 14 26 18 28L18 32L22 32L22 28C26 26 30 24 30 18C30 13 26 8 20 8Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M16 32L24 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <p class="value-card__name">Sabiduría</p>
+        <p class="value-card__desc">La experiencia que transforma.</p>
+      </div>
+      <div class="value-card">
+        <svg class="value-card__icon" viewBox="0 0 40 40" fill="none"><path d="M8 20C8 13 13 8 20 8C24 8 28 10 30 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M32 20C32 27 27 32 20 32C16 32 12 30 10 26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M28 10L30 14L26 14M12 26L10 26L10 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p class="value-card__name">Adaptabilidad</p>
+        <p class="value-card__desc">Nos reinventamos y evolucionamos.</p>
+      </div>
+      <div class="value-card">
+        <svg class="value-card__icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="13" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M8 32C8 25 13 21 20 21C27 21 32 25 32 32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M26 10L30 8M26 13L31 13M26 16L30 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <p class="value-card__name">Liderazgo</p>
+        <p class="value-card__desc">Dirección clara. Impacto real.</p>
+      </div>
+      <div class="value-card">
+        <svg class="value-card__icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M20 8V12M20 28V32M8 20H12M28 20H32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11.5 11.5L14.3 14.3M25.7 25.7L28.5 28.5M28.5 11.5L25.7 14.3M14.3 25.7L11.5 28.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        <p class="value-card__name">Potencial</p>
+        <p class="value-card__desc">Crecimiento ilimitado.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:var(--bg);">
+  <div class="wrap">
+    <header class="section-header section-header--center reveal">
+      <span class="eyebrow eyebrow--center">Testimonios</span>
+      <h2 class="h2 mt-6">Lo que dicen quienes evolucionaron</h2>
+    </header>
+    <div class="grid-3" style="margin-top:2.5rem;">
+      <div class="testimonial reveal d1">
+        <p class="testimonial__quote">"Silvora nos ayudó a entender qué capacidades humanas serán críticas en los próximos cinco años. Transformó la manera en que pensamos el talento."</p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">MC</div>
+          <div>
+            <p class="testimonial__name">María C.</p>
+            <p class="testimonial__role">Chief People Officer · Empresa tecnológica</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal d2">
+        <p class="testimonial__quote">"El framework de las cinco dimensiones nos dio un lenguaje común para hablar de evolución profesional con todo el equipo directivo."</p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">JR</div>
+          <div>
+            <p class="testimonial__name">Jorge R.</p>
+            <p class="testimonial__role">CEO · Grupo empresarial</p>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial reveal d3">
+        <p class="testimonial__quote">"El taller de AI Capability Evolution cambió la relación de mi equipo con la inteligencia artificial. Pasamos del miedo a la amplificación."</p>
+        <div class="testimonial__author">
+          <div class="testimonial__avatar">AL</div>
+          <div>
+            <p class="testimonial__name">Ana L.</p>
+            <p class="testimonial__role">Directora de Innovación · Corporación multinacional</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
 <section class="cta-dark section">
   <div class="cta-dark__bg" aria-hidden="true">
-    <svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="250" stroke="#4FAEAA" stroke-width="1"/><circle cx="300" cy="300" r="170" stroke="#B87333" stroke-width="0.5"/></svg>
+    <svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="250" stroke="#4FAEAA" stroke-width="1"/><circle cx="300" cy="300" r="180" stroke="#B87333" stroke-width="1"/><circle cx="300" cy="300" r="110" stroke="#4FAEAA" stroke-width="0.5"/></svg>
   </div>
   <div class="wrap">
     <div class="cta-dark__content reveal">
-      <div class="cta-dark__label">Talent Maturity Assessment</div>
-      <h2 class="cta-dark__title">Encontrá tu punto de partida.</h2>
-      <p class="cta-dark__body">El primer paso es el diagnóstico. Completá el Talent Maturity Assessment y recibí un análisis personalizado de tus dimensiones de evolución.</p>
+      <div class="cta-dark__label">Empezá tu evolución</div>
+      <h2 class="cta-dark__title">Diseñá tu próximo capítulo.</h2>
+      <p class="cta-dark__body">Comenzá con el Talent Maturity Assessment para identificar tu punto de partida y construir tu hoja de ruta.</p>
       <div class="cta-dark__actions">
-        <a href="/silvora.com/contact/" class="btn btn--light">Abrir assessment
+        <a href="/silvora.com/contact/" class="btn btn--light">Solicitar assessment
           <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
         <a href="/silvora.com/services/" class="btn btn--ghost" style="color:rgba(247,244,239,0.65);">Ver servicios</a>
@@ -261,34 +384,36 @@
       <div class="footer__brand">
         <span class="footer__wordmark">SILVORA</span>
         <span class="footer__tagline" data-i18n="footer.tagline">Reinvención · Creación · Evolución</span>
-        <p class="footer__desc">Framework estratégico para evolucionar el valor humano.</p>
+        <p class="footer__desc">Framework estratégico para evolucionar el valor humano en la era de la IA y la longevidad.</p>
       </div>
-      <div class="footer__col"><h4>Páginas</h4><ul><li><a href="/silvora.com/about/">Nosotros</a></li><li><a href="/silvora.com/services/">Servicios</a></li><li><a href="/silvora.com/speaking/">Speaking</a></li><li><a href="/silvora.com/contact/">Contacto</a></li></ul></div>
-      <div class="footer__col"><h4>Contacto</h4><ul><li><a href="/silvora.com/contact/">Escribinos</a></li><li><a href="https://www.linkedin.com/company/silvoratalent" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="mailto:hola@silvora.com">hola@silvora.com</a></li></ul></div>
+      <div class="footer__col">
+        <h4>Páginas</h4>
+        <ul>
+          <li><a href="/silvora.com/about/">Nosotros</a></li>
+          <li><a href="/silvora.com/services/">Servicios</a></li>
+          <li><a href="/silvora.com/lab/">Human Value Lab</a></li>
+          <li><a href="/silvora.com/speaking/">Speaking</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h4>Contacto</h4>
+        <ul>
+          <li><a href="/silvora.com/contact/">Escribinos</a></li>
+          <li><a href="https://www.linkedin.com/company/silvoratalent" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="mailto:hola@silvora.com">hola@silvora.com</a></li>
+        </ul>
+      </div>
     </div>
     <div class="footer__bottom">
       <p class="footer__rights" data-i18n="footer.rights">© 2025 Silvora. Todos los derechos reservados.</p>
-      <div class="footer__social"><a href="https://www.linkedin.com/company/silvoratalent" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a></div>
+      <div class="footer__social">
+        <a href="https://www.linkedin.com/company/silvoratalent" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+      </div>
     </div>
   </div>
 </footer>
-
-<!-- MOBILE MENU — fuera del nav, antes del </body> -->
-<div id="mobile-menu" class="nav__mobile">
-  <div class="nav__mobile-brand">
-    <img src="/silvora.com/assets/silvora-logo.png" alt="Silvora" class="nav__mobile-logo"/>
-  </div>
-  <a href="/silvora.com/about/"    class="nav__mobile-link" data-i18n="nav.about">Nosotros</a>
-  <a href="/silvora.com/services/" class="nav__mobile-link" data-i18n="nav.services">Servicios</a>
-  <a href="/silvora.com/lab/"      class="nav__mobile-link" data-i18n="nav.lab">Lab</a>
-  <a href="/silvora.com/speaking/" class="nav__mobile-link" data-i18n="nav.speaking">Speaking</a>
-  <a href="/silvora.com/contact/"  class="nav__mobile-link" data-i18n="nav.contact">Contacto</a>
-  <div class="nav__mobile-lang">
-    <button class="lang-btn" data-lang-es>ES</button>
-    <button class="lang-btn" data-lang-en>EN</button>
-  </div>
-  <a href="/silvora.com/contact/" class="btn btn--primary" style="margin-top:1.5rem;justify-content:center;" data-i18n="nav.cta">Comenzar</a>
-</div>
 
 <script src="/silvora.com/js/main.js"></script>
 </body>
