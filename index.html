@@ -9,7 +9,8 @@
 <meta property="og:description" content="Framework estratégico para evolucionar el valor humano en la era de la IA y la longevidad."/>
 <meta property="og:type" content="website"/>
 <meta property="og:url" content="https://silvora.com/"/>
-<link rel="canonical" href="https://silvora.com/"/>
+  <link rel="icon" type="image/svg+xml" href="assets/isologo.svg"/>
+  <link rel="canonical" href="https://silvora.com/"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
@@ -18,22 +19,12 @@
 </head>
 <body>
 
-<!-- NAV -->
 <header>
-<nav class="nav" aria-label="Principal">
+<nav class="nav nav--dark" aria-label="Principal">
   <div class="wrap">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo" aria-label="Silvora inicio">
-        <svg width="34" height="34" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-          <path d="M40 4C22 4 14 12 14 22C14 34 26 38 40 38" fill="#1F2A44"/>
-          <path d="M40 38C54 38 66 44 66 56C66 68 56 76 40 76" fill="#3E8E8A"/>
-          <path d="M14 56C14 64 20 72 30 75L40 76C28 72 18 66 18 56Z" fill="#E58D73"/>
-          <path d="M40 4C52 4 62 10 64 20L66 20C64 8 54 2 40 4Z" fill="#F2E8DA" opacity=".6"/>
-        </svg>
-        <div class="nav__logo-text">
-          <span class="nav__wordmark">SILVORA</span>
-          <span class="nav__tagline">Human Value Evolution</span>
-        </div>
+        <img src="assets/logo.svg" alt="Silvora" class="nav__logo-img" width="140" height="40"/>
       </a>
       <div class="nav__links">
         <a href="about.html"    class="nav__link" data-i18n="nav.about">Nosotros</a>
@@ -43,8 +34,11 @@
         <a href="contact.html"  class="nav__link" data-i18n="nav.contact">Contacto</a>
       </div>
       <div class="nav__cta">
-        <button class="btn btn--outline" style="padding:0.5rem 1rem;font-size:0.7rem;" data-lang>EN</button>
-        <a href="contact.html" class="btn btn--primary" data-i18n="nav.cta">Comenzar
+        <div class="lang-switcher" role="group" aria-label="Idioma">
+          <button class="lang-btn" data-lang-es aria-label="Español">ES</button>
+          <button class="lang-btn" data-lang-en aria-label="English">EN</button>
+        </div>
+        <a href="contact.html" class="btn btn--light" data-i18n="nav.cta">Comenzar
           <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
@@ -54,12 +48,19 @@
     </div>
   </div>
   <div id="mobile-menu" class="nav__mobile">
+    <div class="nav__mobile-brand">
+      <img src="assets/logo.svg" alt="Silvora" style="height:28px;width:auto;"/>
+    </div>
     <a href="about.html"    class="nav__mobile-link">Nosotros</a>
     <a href="services.html" class="nav__mobile-link">Servicios</a>
     <a href="lab.html"      class="nav__mobile-link">Lab</a>
     <a href="speaking.html" class="nav__mobile-link">Speaking</a>
     <a href="contact.html"  class="nav__mobile-link">Contacto</a>
-    <a href="contact.html"  class="btn btn--primary mt-4">Comenzar</a>
+    <div class="nav__mobile-lang">
+      <button class="lang-btn" data-lang-es>ES</button>
+      <button class="lang-btn" data-lang-en>EN</button>
+    </div>
+    <a href="contact.html" class="btn btn--primary mt-4" style="margin-top:1.5rem;">Comenzar</a>
   </div>
 </nav>
 </header>
@@ -70,10 +71,10 @@
 <section class="hero">
   <div class="hero__bg" aria-hidden="true">
     <svg viewBox="0 0 600 700" fill="none">
-      <path d="M300 0Q500 150 500 350Q500 550 300 700" stroke="#3E8E8A" stroke-width="1" fill="none"/>
-      <path d="M300 0Q470 120 470 350Q470 580 300 700" stroke="#3E8E8A" stroke-width="1" fill="none"/>
-      <path d="M300 0Q440 90 440 350Q440 610 300 700" stroke="#E58D73" stroke-width="1" fill="none"/>
-      <circle cx="300" cy="350" r="200" stroke="#3E8E8A" stroke-width="0.5" fill="none"/>
+      <path d="M300 0Q500 150 500 350Q500 550 300 700" stroke="#4FAEAA" stroke-width="1" fill="none"/>
+      <path d="M300 0Q470 120 470 350Q470 580 300 700" stroke="#4FAEAA" stroke-width="0.7" fill="none"/>
+      <path d="M300 0Q440 90 440 350Q440 610 300 700" stroke="#B87333" stroke-width="0.7" fill="none"/>
+      <circle cx="300" cy="350" r="200" stroke="#4FAEAA" stroke-width="0.5" fill="none"/>
       <circle cx="300" cy="350" r="290" stroke="#1F2A44" stroke-width="0.5" fill="none"/>
     </svg>
   </div>
@@ -81,7 +82,7 @@
     <div class="hero__content">
       <div class="hero__eyebrow">
         <span class="hero__dot"></span>
-        <span class="eyebrow" style="color:var(--teal);letter-spacing:0.18em;">Human Value Evolution Lab</span>
+        <span class="eyebrow">Human Value Evolution Lab</span>
       </div>
       <h1 class="hero__headline">
         Evolucionamos<br>
@@ -91,10 +92,10 @@
       </h1>
       <p class="hero__lead">Un marco estratégico para evolucionar el valor humano en la era de la inteligencia artificial y la longevidad.</p>
       <div class="hero__actions">
-        <a href="lab.html" class="btn btn--primary">Ver las dimensiones
+        <a href="lab.html" class="btn btn--light">Ver las dimensiones
           <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="about.html" class="btn btn--outline">Conocer Silvora</a>
+        <a href="about.html" class="btn btn--ghost" style="color:rgba(247,244,239,0.7);">Conocer Silvora</a>
       </div>
     </div>
   </div>
@@ -103,17 +104,39 @@
   </div>
 </section>
 
+<!-- MARQUEE -->
+<div class="marquee-wrap" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Human Value Evolution</span>
+    <span class="marquee-item">World Evolution</span>
+    <span class="marquee-item">Human Skills</span>
+    <span class="marquee-item">AI Capability</span>
+    <span class="marquee-item">Personal Care</span>
+    <span class="marquee-item">Human Value Design</span>
+    <span class="marquee-item">Talent Maturity Assessment</span>
+    <span class="marquee-item">Evolution Sprint</span>
+    <span class="marquee-item">Human Value Evolution</span>
+    <span class="marquee-item">World Evolution</span>
+    <span class="marquee-item">Human Skills</span>
+    <span class="marquee-item">AI Capability</span>
+    <span class="marquee-item">Personal Care</span>
+    <span class="marquee-item">Human Value Design</span>
+    <span class="marquee-item">Talent Maturity Assessment</span>
+    <span class="marquee-item">Evolution Sprint</span>
+  </div>
+</div>
+
 <!-- STATS BAR -->
-<section style="background:var(--navy);padding-block:clamp(2rem,4vw,3rem);">
+<div class="stats-bar">
   <div class="wrap">
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,0.08);">
-      <div class="stat"><div class="stat__num">5</div><div class="stat__label" style="color:rgba(247,244,239,0.6);">Dimensiones del framework</div></div>
-      <div class="stat"><div class="stat__num">+200</div><div class="stat__label" style="color:rgba(247,244,239,0.6);">Líderes acompañados</div></div>
-      <div class="stat"><div class="stat__num">+50</div><div class="stat__label" style="color:rgba(247,244,239,0.6);">Organizaciones</div></div>
-      <div class="stat"><div class="stat__num">12</div><div class="stat__label" style="color:rgba(247,244,239,0.6);">Países</div></div>
+    <div class="stats-bar__inner">
+      <div class="stat"><div class="stat__num">5</div><div class="stat__label">Dimensiones del framework</div></div>
+      <div class="stat"><div class="stat__num">+200</div><div class="stat__label">Líderes acompañados</div></div>
+      <div class="stat"><div class="stat__num">+50</div><div class="stat__label">Organizaciones</div></div>
+      <div class="stat"><div class="stat__num">12</div><div class="stat__label">Países</div></div>
     </div>
   </div>
-</section>
+</div>
 
 <!-- INTRO DARK -->
 <section class="intro-dark section">
@@ -141,7 +164,6 @@
       <h2 class="h2 mt-6">Un framework para evolucionar</h2>
     </header>
     <div class="dimensions__list">
-
       <div class="dim reveal">
         <div class="dim__num">01</div>
         <div>
@@ -152,7 +174,6 @@
         </div>
         <a href="lab.html" class="dim__arrow">Explorar<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-
       <div class="dim reveal">
         <div class="dim__num">02</div>
         <div>
@@ -163,7 +184,6 @@
         </div>
         <a href="lab.html" class="dim__arrow">Explorar<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-
       <div class="dim reveal">
         <div class="dim__num">03</div>
         <div>
@@ -174,7 +194,6 @@
         </div>
         <a href="lab.html" class="dim__arrow">Explorar<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-
       <div class="dim reveal">
         <div class="dim__num">04</div>
         <div>
@@ -185,7 +204,6 @@
         </div>
         <a href="lab.html" class="dim__arrow">Explorar<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-
       <div class="dim reveal">
         <div class="dim__num">05</div>
         <div>
@@ -196,7 +214,6 @@
         </div>
         <a href="lab.html" class="dim__arrow">Explorar<svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       </div>
-
       <div class="dim dim--plus reveal">
         <div class="dim__num">+</div>
         <div>
@@ -272,7 +289,7 @@
         <p class="value-card__desc">La experiencia que transforma.</p>
       </div>
       <div class="value-card">
-        <svg class="value-card__icon" viewBox="0 0 40 40" fill="none"><path d="M8 20C8 13 13 8 20 8C24 8 28 10 30 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M32 20C32 27 27 32 20 32C16 32 12 30 10 26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M28 10L30 14L26 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 26L10 26L10 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="value-card__icon" viewBox="0 0 40 40" fill="none"><path d="M8 20C8 13 13 8 20 8C24 8 28 10 30 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M32 20C32 27 27 32 20 32C16 32 12 30 10 26" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M28 10L30 14L26 14M12 26L10 26L10 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <p class="value-card__name">Adaptabilidad</p>
         <p class="value-card__desc">Nos reinventamos y evolucionamos.</p>
       </div>
@@ -283,7 +300,7 @@
       </div>
       <div class="value-card">
         <svg class="value-card__icon" viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M20 8V12M20 28V32M8 20H12M28 20H32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M11.5 11.5L14.3 14.3M25.7 25.7L28.5 28.5M28.5 11.5L25.7 14.3M14.3 25.7L11.5 28.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-        <p class="value-card__name">Potencial Humano</p>
+        <p class="value-card__name">Potencial</p>
         <p class="value-card__desc">Crecimiento ilimitado.</p>
       </div>
     </div>
@@ -297,7 +314,7 @@
       <span class="eyebrow eyebrow--center">Testimonios</span>
       <h2 class="h2 mt-6">Lo que dicen quienes evolucionaron</h2>
     </header>
-    <div class="grid-3" style="margin-top:3rem;">
+    <div class="grid-3" style="margin-top:2.5rem;">
       <div class="testimonial reveal d1">
         <p class="testimonial__quote">"Silvora nos ayudó a entender qué capacidades humanas serán críticas en los próximos cinco años. Transformó la manera en que pensamos el talento."</p>
         <div class="testimonial__author">
@@ -335,7 +352,7 @@
 <!-- CTA -->
 <section class="cta-dark section">
   <div class="cta-dark__bg" aria-hidden="true">
-    <svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="250" stroke="#3E8E8A" stroke-width="1"/><circle cx="300" cy="300" r="180" stroke="#E58D73" stroke-width="1"/><circle cx="300" cy="300" r="110" stroke="#3E8E8A" stroke-width="0.5"/></svg>
+    <svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="250" stroke="#4FAEAA" stroke-width="1"/><circle cx="300" cy="300" r="180" stroke="#B87333" stroke-width="1"/><circle cx="300" cy="300" r="110" stroke="#4FAEAA" stroke-width="0.5"/></svg>
   </div>
   <div class="wrap">
     <div class="cta-dark__content reveal">
@@ -346,7 +363,7 @@
         <a href="contact.html" class="btn btn--light">Solicitar assessment
           <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="services.html" class="btn btn--ghost" style="color:rgba(247,244,239,0.7);">Ver servicios</a>
+        <a href="services.html" class="btn btn--ghost" style="color:rgba(247,244,239,0.65);">Ver servicios</a>
       </div>
     </div>
   </div>
@@ -354,7 +371,6 @@
 
 </main>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="wrap">
     <div class="footer__inner">
@@ -370,15 +386,6 @@
           <li><a href="services.html">Servicios</a></li>
           <li><a href="lab.html">Human Value Lab</a></li>
           <li><a href="speaking.html">Speaking</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4>Servicios</h4>
-        <ul>
-          <li><a href="services.html">Para personas</a></li>
-          <li><a href="services.html">Para equipos</a></li>
-          <li><a href="services.html">Para organizaciones</a></li>
-          <li><a href="speaking.html">Conferencias</a></li>
         </ul>
       </div>
       <div class="footer__col">
