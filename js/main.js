@@ -1,7 +1,7 @@
-/* SILVORA · main.js */
-const nav       = document.querySelector('.nav');
+/* SILVORA fixed main.js */
+const nav = document.querySelector('.nav');
 const navToggle = document.querySelector('.nav__toggle');
-const navMobile = document.getElementById('mobile-menu');
+const navMobile = document.querySelector('.nav__mobile');
 
 window.addEventListener('scroll', () => {
   nav?.classList.toggle('scrolled', window.scrollY > 40);
@@ -11,21 +11,17 @@ function closeMobileMenu() {
   navToggle?.classList.remove('open');
   navMobile?.classList.remove('open');
   document.body.style.overflow = '';
-  document.documentElement.style.overflow = '';
   navToggle?.setAttribute('aria-expanded', 'false');
 }
 
-navToggle?.addEventListener('click', (e) => {
-  e.stopPropagation();
+navToggle?.addEventListener('click', () => {
   const open = navToggle.classList.toggle('open');
   navMobile?.classList.toggle('open', open);
   document.body.style.overflow = open ? 'hidden' : '';
-  document.documentElement.style.overflow = open ? 'hidden' : '';
   navToggle.setAttribute('aria-expanded', String(open));
 });
 navMobile?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
 document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMobileMenu(); });
-window.addEventListener('resize', () => { if (window.innerWidth > 768) closeMobileMenu(); }, { passive: true });
 
 const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.nav__link, .nav__mobile-link').forEach(link => {
