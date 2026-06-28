@@ -56,11 +56,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   background: transparent;
 }
 
-/* Dark hero variant — give it a soft navy base so links are always readable */
+/* Dark hero variant — solid enough to read as nav, subtle enough to feel premium */
 .nav--dark {
-  background: rgba(31, 42, 68, 0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  background: rgba(20, 28, 48, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.07);
 }
 
 /* On dark hero: links are light */
@@ -571,17 +572,19 @@ html, body { max-width: 100%; overflow-x: hidden; }
 }
 
 /* "Get started" CTA button
-   On navy hero  → outlined white capsule (clearly visible)
-   On beige/scroll → solid navy capsule                        */
+   On navy hero  → solid cream/sand capsule with navy text (max contrast)
+   On beige/scroll → solid navy capsule with white text               */
 .nav--dark:not(.scrolled) .btn--light {
-  background: transparent !important;
-  color: #fff !important;
-  border: 1.5px solid rgba(255,255,255,0.55) !important;
-  box-shadow: none !important;
+  background: var(--cream) !important;
+  color: var(--navy) !important;
+  border: 1.5px solid var(--cream) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.20) !important;
+  font-weight: 700 !important;
 }
 .nav--dark:not(.scrolled) .btn--light:hover {
-  background: rgba(255,255,255,0.12) !important;
+  background: #fff !important;
   border-color: #fff !important;
+  transform: translateY(-1px);
 }
 .nav.scrolled .btn--light,
 .nav:not(.nav--dark) .btn--light {
@@ -589,11 +592,13 @@ html, body { max-width: 100%; overflow-x: hidden; }
   color: #fff !important;
   border-color: var(--navy) !important;
   box-shadow: 0 4px 14px rgba(31,42,68,0.18) !important;
+  font-weight: 700 !important;
 }
 .nav.scrolled .btn--light:hover,
 .nav:not(.nav--dark) .btn--light:hover {
   background: var(--teal) !important;
   border-color: var(--teal) !important;
+  transform: translateY(-1px);
 }
 
 /* Responsive logo sizes */
