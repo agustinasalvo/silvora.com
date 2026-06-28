@@ -1,81 +1,86 @@
-/* SILVORA · main.js — Mobile menu fix definitivo */
+/* SILVORA · main.js */
 
-const nav = document.querySelector('.nav');
+/* ══════════════════════════════════════════════
+   MOBILE MENU — FIX DEFINITIVO
+   
+   backdrop-filter en .nav crea un stacking context.
+   Cualquier position:fixed dentro queda atrapado
+   en los 68px del nav. Fix: mover el panel al
+   <body> con JS apenas carga el DOM.
+   ══════════════════════════════════════════════ */
+
+const nav       = document.querySelector('.nav');
 const navToggle = document.querySelector('.nav__toggle');
+let   navMobile = document.getElementById('mobile-menu');
 
-/* ══════════════════════════════════════════════════════════
-   FIX CRÍTICO: mover el panel al <body>
-   
-   El panel está dentro del <nav> que tiene position:fixed
-   y z-index:200. Un hijo con position:fixed dentro de un
-   ancestro con transform/filter/will-change o que crea
-   stacking context queda atrapado visualmente.
-   
-   Solución: moverlo al <body> con JS antes de usarlo.
-   Así position:fixed se calcula contra el viewport real.
-   ══════════════════════════════════════════════════════════ */
-const navMobileOriginal = document.querySelector('.nav__mobile');
-let navMobile = navMobileOriginal;
-
-if (navMobileOriginal) {
-  // Mover al final del body, fuera del nav/header
-  document.body.appendChild(navMobileOriginal);
-  navMobile = navMobileOriginal; // referencia actualizada
+// Mover el panel al body ANTES de cualquier otra cosa
+if (navMobile) {
+  document.body.appendChild(navMobile);
 }
 
-/* Scroll */
+/* ── Scroll ── */
 window.addEventListener('scroll', () => {
   nav?.classList.toggle('scrolled', window.scrollY > 40);
 }, { passive: true });
 
-/* Cerrar menú */
+/* ── Cerrar ── */
 function closeMobileMenu() {
   navToggle?.classList.remove('open');
   navMobile?.classList.remove('open');
-  document.body.style.overflow = '';
+  document.body.style.overflow        = '';
   document.documentElement.style.overflow = '';
   navToggle?.setAttribute('aria-expanded', 'false');
 }
 
-/* Abrir/cerrar menú */
+/* ── Abrir/cerrar ── */
 navToggle?.addEventListener('click', (e) => {
   e.stopPropagation();
   const open = navToggle.classList.toggle('open');
   navMobile?.classList.toggle('open', open);
-  document.body.style.overflow = open ? 'hidden' : '';
+  document.body.style.overflow        = open ? 'hidden' : '';
   document.documentElement.style.overflow = open ? 'hidden' : '';
   navToggle.setAttribute('aria-expanded', String(open));
 });
 
-/* Cerrar al tocar un link */
-navMobile?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMobileMenu));
+/* Botón X del topbar interno */
+const mobileCloseBtn = document.getElementById('mobile-close-btn');
+if (mobileCloseBtn) {
+  mobileCloseBtn.addEventListener('click', closeMobileMenu);
+}
+
+/* Cerrar al tocar un link del menú */
+navMobile?.querySelectorAll('a').forEach(link =>
+  link.addEventListener('click', closeMobileMenu)
+);
 
 /* Cerrar con ESC */
-document.addEventListener('keydown', event => { if (event.key === 'Escape') closeMobileMenu(); });
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeMobileMenu();
+});
 
-/* Cerrar al rotar/redimensionar a desktop */
+/* Cerrar si se pasa a desktop */
 window.addEventListener('resize', () => {
   if (window.innerWidth > 768) closeMobileMenu();
 }, { passive: true });
 
-/* Link activo */
+/* ── Link activo ── */
 const currentPath = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.nav__link, .nav__mobile-link').forEach(link => {
   if (link.getAttribute('href') === currentPath) link.classList.add('active');
 });
 
-/* Reveal on scroll */
+/* ── Reveal on scroll ── */
 const revealItems = document.querySelectorAll('.reveal, .reveal-l, .reveal-r');
 if ('IntersectionObserver' in window) {
-  const revealObserver = new IntersectionObserver(entries => {
+  const obs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('visible');
-        revealObserver.unobserve(entry.target);
+        obs.unobserve(entry.target);
       }
     });
   }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
-  revealItems.forEach(el => revealObserver.observe(el));
+  revealItems.forEach(el => obs.observe(el));
 } else {
   revealItems.forEach(el => el.classList.add('visible'));
 }
