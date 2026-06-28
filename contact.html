@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Contacto · Silvora</title>
 <meta name="description" content="Contactá a Silvora para comenzar tu proceso de Human Value Evolution. Programas individuales, equipos y organizaciones."/>
-<link rel="canonical" href="https://silvora.com/contact.html"/>
+  <link rel="icon" type="image/svg+xml" href="assets/isologo.svg"/>
+  <link rel="canonical" href="https://silvora.com/contact.html"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
@@ -14,29 +15,24 @@
 <body>
 
 <header>
-<nav class="nav">
+<nav class="nav nav--dark">
   <div class="wrap">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo" aria-label="Silvora inicio">
-        <svg width="34" height="34" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-          <path d="M40 4C22 4 14 12 14 22C14 34 26 38 40 38" fill="#1F2A44"/>
-          <path d="M40 38C54 38 66 44 66 56C66 68 56 76 40 76" fill="#3E8E8A"/>
-          <path d="M14 56C14 64 20 72 30 75L40 76C28 72 18 66 18 56Z" fill="#E58D73"/>
-        </svg>
-        <div class="nav__logo-text">
-          <span class="nav__wordmark">SILVORA</span>
-          <span class="nav__tagline">Human Value Evolution</span>
-        </div>
+        <img src="assets/logo.svg" alt="Silvora" class="nav__logo-img" width="140" height="40"/>
       </a>
       <div class="nav__links">
-        <a href="about.html"    class="nav__link">Nosotros</a>
-        <a href="services.html" class="nav__link">Servicios</a>
-        <a href="lab.html"      class="nav__link">Lab</a>
-        <a href="speaking.html" class="nav__link">Speaking</a>
-        <a href="contact.html"  class="nav__link active">Contacto</a>
+        <a href="about.html"    class="nav__link" data-i18n="nav.about">Nosotros</a>
+        <a href="services.html" class="nav__link" data-i18n="nav.services">Servicios</a>
+        <a href="lab.html"      class="nav__link" data-i18n="nav.lab">Lab</a>
+        <a href="speaking.html" class="nav__link" data-i18n="nav.speaking">Speaking</a>
+        <a href="contact.html"  class="nav__link active" data-i18n="nav.contact">Contacto</a>
       </div>
       <div class="nav__cta">
-        <button class="btn btn--outline" style="padding:0.5rem 1rem;font-size:0.7rem;" data-lang>EN</button>
+        <div class="lang-switcher" role="group" aria-label="Idioma">
+          <button class="lang-btn" data-lang-es aria-label="Español">ES</button>
+          <button class="lang-btn" data-lang-en aria-label="English">EN</button>
+        </div>
       </div>
       <button class="nav__toggle" aria-label="Menú" aria-expanded="false" aria-controls="mobile-menu">
         <span></span><span></span><span></span>
@@ -44,11 +40,18 @@
     </div>
   </div>
   <div id="mobile-menu" class="nav__mobile">
+    <div class="nav__mobile-brand">
+      <img src="assets/logo.svg" alt="Silvora" style="height:28px;width:auto;"/>
+    </div>
     <a href="about.html"    class="nav__mobile-link">Nosotros</a>
     <a href="services.html" class="nav__mobile-link">Servicios</a>
     <a href="lab.html"      class="nav__mobile-link">Lab</a>
     <a href="speaking.html" class="nav__mobile-link">Speaking</a>
     <a href="contact.html"  class="nav__mobile-link">Contacto</a>
+    <div class="nav__mobile-lang">
+      <button class="lang-btn" data-lang-es>ES</button>
+      <button class="lang-btn" data-lang-en>EN</button>
+    </div>
   </div>
 </nav>
 </header>
@@ -57,7 +60,7 @@
 
 <section class="page-hero">
   <div class="page-hero__bg" aria-hidden="true">
-    <svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="250" stroke="#3E8E8A" stroke-width="1"/><circle cx="300" cy="300" r="180" stroke="#E58D73" stroke-width="0.5"/></svg>
+    <svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="250" stroke="#4FAEAA" stroke-width="1"/><circle cx="300" cy="300" r="180" stroke="#B87333" stroke-width="0.5"/></svg>
   </div>
   <div class="wrap">
     <div class="page-hero__eyebrow"><span>Contacto</span></div>
@@ -73,7 +76,7 @@
 
       <!-- FORM -->
       <div class="reveal-l">
-        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:clamp(2rem,4vw,3rem);">
+        <div style="background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:clamp(1.75rem,3.5vw,2.75rem);">
           <h2 class="h3 mb-6">Escribinos</h2>
           <form class="form" id="contact-form" novalidate>
             <div class="form__row">
@@ -114,29 +117,28 @@
               Enviar mensaje
               <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
             </button>
-            <div id="form-success" style="display:none;background:rgba(62,142,138,0.08);border:1px solid var(--teal);border-radius:var(--radius);padding:1.25rem;text-align:center;">
-              <p style="font-weight:600;color:var(--teal);margin-bottom:0.25rem;">¡Mensaje enviado!</p>
+            <div id="form-success" style="display:none;background:rgba(79,174,170,0.07);border:1px solid var(--teal);border-radius:var(--radius);padding:1.125rem;text-align:center;margin-top:0.5rem;">
+              <p style="font-weight:600;color:var(--teal);margin-bottom:0.2rem;">¡Mensaje enviado!</p>
               <p style="font-size:var(--sm);color:var(--muted);">Te respondemos en menos de 24 horas.</p>
             </div>
           </form>
         </div>
       </div>
 
-      <!-- CONTACT INFO -->
-      <div class="reveal-r" style="display:flex;flex-direction:column;gap:1.5rem;">
+      <!-- INFO -->
+      <div class="reveal-r" style="display:flex;flex-direction:column;gap:1.25rem;">
 
         <div>
           <h2 class="h3 mb-6">También podés encontrarnos aquí.</h2>
-          <p class="lead" style="margin-bottom:2rem;">Preferís hablar antes de escribir. Estamos disponibles para una conversación exploratoria de 30 minutos sin costo.</p>
+          <p class="lead" style="margin-bottom:1.75rem;">Preferís hablar antes de escribir. Estamos disponibles para una conversación exploratoria de 30 minutos sin costo.</p>
         </div>
 
-        <!-- LinkedIn -->
         <a href="https://www.linkedin.com/company/silvoratalent" target="_blank" rel="noopener"
-           style="display:flex;align-items:center;gap:1.25rem;padding:1.5rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--t) var(--ease);text-decoration:none;"
+           style="display:flex;align-items:center;gap:1.125rem;padding:1.25rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--t) var(--ease);text-decoration:none;"
            onmouseenter="this.style.borderColor='var(--teal)';this.style.boxShadow='var(--shadow)'"
            onmouseleave="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
-          <div style="width:48px;height:48px;border-radius:50%;background:rgba(62,142,138,0.10);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="#3E8E8A"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(79,174,170,0.10);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#4FAEAA"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
           </div>
           <div>
             <p style="font-weight:700;font-size:var(--sm);color:var(--navy);">LinkedIn</p>
@@ -144,13 +146,12 @@
           </div>
         </a>
 
-        <!-- Email -->
         <a href="mailto:hola@silvora.com"
-           style="display:flex;align-items:center;gap:1.25rem;padding:1.5rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--t) var(--ease);text-decoration:none;"
+           style="display:flex;align-items:center;gap:1.125rem;padding:1.25rem;background:var(--white);border:1px solid var(--border);border-radius:var(--radius-lg);transition:all var(--t) var(--ease);text-decoration:none;"
            onmouseenter="this.style.borderColor='var(--teal)';this.style.boxShadow='var(--shadow)'"
            onmouseleave="this.style.borderColor='var(--border)';this.style.boxShadow='none'">
-          <div style="width:48px;height:48px;border-radius:50%;background:rgba(62,142,138,0.10);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3E8E8A" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <div style="width:44px;height:44px;border-radius:50%;background:rgba(79,174,170,0.10);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#4FAEAA" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           </div>
           <div>
             <p style="font-weight:700;font-size:var(--sm);color:var(--navy);">Email</p>
@@ -158,37 +159,36 @@
           </div>
         </a>
 
-        <!-- Response time -->
-        <div style="padding:1.5rem;background:var(--cream);border-radius:var(--radius-lg);">
-          <p style="font-size:var(--xs);font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem;">Tiempo de respuesta</p>
-          <p style="font-family:var(--font-serif);font-size:1.5rem;font-weight:600;color:var(--navy);margin-bottom:0.375rem;">Menos de 24 horas</p>
+        <div style="padding:1.375rem;background:var(--cream);border-radius:var(--radius-lg);">
+          <p style="font-size:var(--xs);font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--teal);margin-bottom:0.625rem;">Tiempo de respuesta</p>
+          <p style="font-family:var(--font-serif);font-size:1.375rem;font-weight:600;color:var(--navy);margin-bottom:0.3rem;">Menos de 24 horas</p>
           <p style="font-size:var(--sm);color:var(--muted);">Respondemos todos los mensajes de lunes a viernes en horario de Buenos Aires (GMT-3).</p>
         </div>
 
         <!-- FAQ -->
-        <div style="border-top:1px solid var(--border);padding-top:1.5rem;">
-          <h3 class="h3" style="font-size:1.125rem;margin-bottom:1.25rem;">Preguntas frecuentes</h3>
-          <div style="display:flex;flex-direction:column;gap:1rem;">
-            <details style="border-bottom:1px solid var(--border);padding-bottom:1rem;">
-              <summary style="font-weight:600;font-size:var(--sm);color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+        <div style="border-top:1px solid var(--border);padding-top:1.375rem;">
+          <h3 class="h3" style="font-size:1rem;margin-bottom:1.125rem;">Preguntas frecuentes</h3>
+          <div style="display:flex;flex-direction:column;gap:0.875rem;">
+            <details style="border-bottom:1px solid var(--border);padding-bottom:0.875rem;">
+              <summary style="font-weight:600;font-size:var(--sm);color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:0.5rem;">
                 ¿Trabajan con personas o solo con empresas?
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;"><path d="M2 5l5 5 5-5" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </summary>
-              <p style="font-size:var(--sm);color:var(--muted);margin-top:0.75rem;line-height:1.65;">Con ambos. Tenemos programas diseñados para profesionales individuales, equipos y organizaciones completas.</p>
+              <p style="font-size:var(--sm);color:var(--muted);margin-top:0.625rem;line-height:1.65;">Con ambos. Tenemos programas diseñados para profesionales individuales, equipos y organizaciones completas.</p>
             </details>
-            <details style="border-bottom:1px solid var(--border);padding-bottom:1rem;">
-              <summary style="font-weight:600;font-size:var(--sm);color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+            <details style="border-bottom:1px solid var(--border);padding-bottom:0.875rem;">
+              <summary style="font-weight:600;font-size:var(--sm);color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:0.5rem;">
                 ¿Cuál es la duración mínima de un programa?
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;"><path d="M2 5l5 5 5-5" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </summary>
-              <p style="font-size:var(--sm);color:var(--muted);margin-top:0.75rem;line-height:1.65;">El Evolution Sprint dura 30 días e incluye assessment + 4 sesiones. Para programas organizacionales, el mínimo es un workshop de un día.</p>
+              <p style="font-size:var(--sm);color:var(--muted);margin-top:0.625rem;line-height:1.65;">El Evolution Sprint dura 30 días e incluye assessment + 4 sesiones. Para programas organizacionales, el mínimo es un workshop de un día.</p>
             </details>
-            <details style="padding-bottom:0.5rem;">
-              <summary style="font-weight:600;font-size:var(--sm);color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;">
+            <details>
+              <summary style="font-weight:600;font-size:var(--sm);color:var(--navy);cursor:pointer;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:0.5rem;">
                 ¿Trabajan en toda América Latina?
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 5l5 5 5-5" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                <svg width="13" height="13" viewBox="0 0 14 14" fill="none" style="flex-shrink:0;"><path d="M2 5l5 5 5-5" stroke="var(--muted)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
               </summary>
-              <p style="font-size:var(--sm);color:var(--muted);margin-top:0.75rem;line-height:1.65;">Sí. Operamos de manera presencial en Argentina, Uruguay, Chile, Colombia, México y España, y de manera virtual en cualquier país.</p>
+              <p style="font-size:var(--sm);color:var(--muted);margin-top:0.625rem;line-height:1.65;">Sí. Operamos de manera presencial en Argentina, Uruguay, Chile, Colombia, México y España, y de manera virtual en cualquier país.</p>
             </details>
           </div>
         </div>
@@ -205,14 +205,14 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <span class="footer__wordmark">SILVORA</span>
-        <span class="footer__tagline">Reinvención · Creación · Evolución</span>
+        <span class="footer__tagline" data-i18n="footer.tagline">Reinvención · Creación · Evolución</span>
         <p class="footer__desc">Framework estratégico para evolucionar el valor humano.</p>
       </div>
       <div class="footer__col"><h4>Páginas</h4><ul><li><a href="about.html">Nosotros</a></li><li><a href="services.html">Servicios</a></li><li><a href="lab.html">Human Value Lab</a></li><li><a href="speaking.html">Speaking</a></li></ul></div>
       <div class="footer__col"><h4>Contacto</h4><ul><li><a href="mailto:hola@silvora.com">hola@silvora.com</a></li><li><a href="https://www.linkedin.com/company/silvoratalent" target="_blank" rel="noopener">LinkedIn</a></li></ul></div>
     </div>
     <div class="footer__bottom">
-      <p class="footer__rights">© 2025 Silvora. Todos los derechos reservados.</p>
+      <p class="footer__rights" data-i18n="footer.rights">© 2025 Silvora. Todos los derechos reservados.</p>
       <div class="footer__social"><a href="https://www.linkedin.com/company/silvoratalent" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a></div>
     </div>
   </div>
@@ -224,7 +224,7 @@ const form = document.getElementById('contact-form');
 form?.addEventListener('submit', e => {
   e.preventDefault();
   const btn = document.getElementById('submit-btn');
-  btn.textContent = 'Enviando...';
+  btn.textContent = 'Enviando…';
   btn.disabled = true;
   setTimeout(() => {
     form.style.display = 'none';
