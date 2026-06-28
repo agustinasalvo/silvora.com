@@ -5,7 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>Nosotros · Silvora</title>
 <meta name="description" content="Conocé la historia, la visión y el equipo detrás de Silvora. Creamos el framework Human Value Evolution para la era de la IA y la longevidad."/>
-<link rel="canonical" href="https://silvora.com/about.html"/>
+  <link rel="icon" type="image/svg+xml" href="assets/isologo.svg"/>
+  <link rel="canonical" href="https://silvora.com/about.html"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
@@ -14,31 +15,25 @@
 <body>
 
 <header>
-<nav class="nav">
+<nav class="nav nav--dark">
   <div class="wrap">
     <div class="nav__inner">
       <a href="index.html" class="nav__logo" aria-label="Silvora inicio">
-        <svg width="34" height="34" viewBox="0 0 80 80" fill="none" aria-hidden="true">
-          <path d="M40 4C22 4 14 12 14 22C14 34 26 38 40 38" fill="#1F2A44"/>
-          <path d="M40 38C54 38 66 44 66 56C66 68 56 76 40 76" fill="#3E8E8A"/>
-          <path d="M14 56C14 64 20 72 30 75L40 76C28 72 18 66 18 56Z" fill="#E58D73"/>
-          <path d="M40 4C52 4 62 10 64 20L66 20C64 8 54 2 40 4Z" fill="#F2E8DA" opacity=".6"/>
-        </svg>
-        <div class="nav__logo-text">
-          <span class="nav__wordmark">SILVORA</span>
-          <span class="nav__tagline">Human Value Evolution</span>
-        </div>
+        <img src="assets/logo.svg" alt="Silvora" class="nav__logo-img" width="140" height="40"/>
       </a>
       <div class="nav__links">
-        <a href="about.html"    class="nav__link active">Nosotros</a>
-        <a href="services.html" class="nav__link">Servicios</a>
-        <a href="lab.html"      class="nav__link">Lab</a>
-        <a href="speaking.html" class="nav__link">Speaking</a>
-        <a href="contact.html"  class="nav__link">Contacto</a>
+        <a href="about.html"    class="nav__link active" data-i18n="nav.about">Nosotros</a>
+        <a href="services.html" class="nav__link" data-i18n="nav.services">Servicios</a>
+        <a href="lab.html"      class="nav__link" data-i18n="nav.lab">Lab</a>
+        <a href="speaking.html" class="nav__link" data-i18n="nav.speaking">Speaking</a>
+        <a href="contact.html"  class="nav__link" data-i18n="nav.contact">Contacto</a>
       </div>
       <div class="nav__cta">
-        <button class="btn btn--outline" style="padding:0.5rem 1rem;font-size:0.7rem;" data-lang>EN</button>
-        <a href="contact.html" class="btn btn--primary">Comenzar
+        <div class="lang-switcher" role="group" aria-label="Idioma">
+          <button class="lang-btn" data-lang-es aria-label="Español">ES</button>
+          <button class="lang-btn" data-lang-en aria-label="English">EN</button>
+        </div>
+        <a href="contact.html" class="btn btn--light" data-i18n="nav.cta">Comenzar
           <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
       </div>
@@ -48,21 +43,28 @@
     </div>
   </div>
   <div id="mobile-menu" class="nav__mobile">
+    <div class="nav__mobile-brand">
+      <img src="assets/logo.svg" alt="Silvora" style="height:28px;width:auto;"/>
+    </div>
     <a href="about.html"    class="nav__mobile-link">Nosotros</a>
     <a href="services.html" class="nav__mobile-link">Servicios</a>
     <a href="lab.html"      class="nav__mobile-link">Lab</a>
     <a href="speaking.html" class="nav__mobile-link">Speaking</a>
     <a href="contact.html"  class="nav__mobile-link">Contacto</a>
+    <div class="nav__mobile-lang">
+      <button class="lang-btn" data-lang-es>ES</button>
+      <button class="lang-btn" data-lang-en>EN</button>
+    </div>
+    <a href="contact.html" class="btn btn--primary" style="margin-top:1.5rem;">Comenzar</a>
   </div>
 </nav>
 </header>
 
 <main>
 
-<!-- PAGE HERO -->
 <section class="page-hero">
   <div class="page-hero__bg" aria-hidden="true">
-    <svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="250" stroke="#3E8E8A" stroke-width="1"/><circle cx="300" cy="300" r="180" stroke="#E58D73" stroke-width="0.5"/></svg>
+    <svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="250" stroke="#4FAEAA" stroke-width="1"/><circle cx="300" cy="300" r="180" stroke="#B87333" stroke-width="0.5"/></svg>
   </div>
   <div class="wrap">
     <div class="page-hero__eyebrow"><span>Nosotros</span></div>
@@ -90,26 +92,26 @@
 <!-- STORY -->
 <section class="intro-dark section">
   <div class="wrap">
-    <div style="max-width:760px;margin-inline:auto;text-align:center;">
+    <div style="max-width:720px;margin-inline:auto;text-align:center;">
       <div class="reveal">
         <p class="intro-dark__label" style="justify-content:center;margin-bottom:1.5rem;">Nuestra historia</p>
-        <blockquote style="font-family:var(--font-serif);font-size:clamp(1.5rem,3vw,2.5rem);font-weight:400;line-height:1.35;color:var(--white);font-style:italic;margin-bottom:2rem;">
+        <blockquote style="font-family:var(--font-serif);font-size:clamp(1.4rem,2.5vw,2.25rem);font-weight:400;line-height:1.38;color:var(--white);font-style:italic;margin-bottom:2rem;">
           "Vimos que el mundo del trabajo estaba cambiando más rápido que la capacidad de las personas para adaptarse. Decidimos crear las herramientas para cerrar esa brecha."
         </blockquote>
-        <p style="font-size:var(--sm);color:rgba(247,244,239,0.5);letter-spacing:0.08em;">— Equipo Silvora</p>
+        <p style="font-size:var(--sm);color:rgba(247,244,239,0.45);letter-spacing:0.08em;">— Equipo Silvora</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VALUES IN DEPTH -->
+<!-- VALUES -->
 <section class="section" style="background:var(--white);">
   <div class="wrap">
     <header class="section-header reveal">
       <span class="eyebrow">Nuestros valores</span>
       <h2 class="h2 mt-6">Lo que guía cada decisión que tomamos.</h2>
     </header>
-    <div class="grid-auto" style="margin-top:3rem;">
+    <div class="grid-auto" style="margin-top:2.5rem;">
       <div class="card reveal d1">
         <svg class="card__icon" viewBox="0 0 44 44" fill="none"><path d="M9 35L22 13L35 23L22 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M31 9L35 9L35 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3 class="card__title">Evolución</h3>
@@ -123,12 +125,12 @@
       <div class="card reveal d3">
         <svg class="card__icon" viewBox="0 0 44 44" fill="none"><path d="M9 22C9 14 14 9 22 9C26 9 30 11 33 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M35 22C35 30 30 35 22 35C18 35 14 33 11 29" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/><path d="M31 11L33 15L29 15M13 29L11 29L11 33" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h3 class="card__title">Adaptabilidad</h3>
-        <p class="card__body">Nos reinventamos y evolucionamos. Practicamos lo que enseñamos: flexibilidad ante la incertidumbre, resiliencia ante el cambio.</p>
+        <p class="card__body">Practicamos lo que enseñamos: flexibilidad ante la incertidumbre, resiliencia ante el cambio.</p>
       </div>
       <div class="card reveal d4">
         <svg class="card__icon" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="14" r="6" stroke="currentColor" stroke-width="1.5"/><path d="M9 35C9 27 14 23 22 23C30 23 35 27 35 35" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" fill="none"/></svg>
         <h3 class="card__title">Liderazgo</h3>
-        <p class="card__body">Dirección clara. Impacto real. Creemos que el liderazgo es un acto de servicio que multiplica el potencial de quienes te rodean.</p>
+        <p class="card__body">Dirección clara. Impacto real. El liderazgo es un acto de servicio que multiplica el potencial de quienes te rodean.</p>
       </div>
       <div class="card reveal d5">
         <svg class="card__icon" viewBox="0 0 44 44" fill="none"><circle cx="22" cy="22" r="5" stroke="currentColor" stroke-width="1.5"/><path d="M22 9V13M22 31V35M9 22H13M31 22H35M12.6 12.6L15.4 15.4M28.6 28.6L31.4 31.4M31.4 12.6L28.6 15.4M15.4 28.6L12.6 31.4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
@@ -169,21 +171,21 @@
           </div>
         </div>
       </div>
-      <div class="reveal-r" style="padding-top:3rem;">
-        <div style="background:var(--navy);border-radius:var(--radius-lg);padding:clamp(2rem,4vw,3rem);color:var(--white);">
-          <p style="font-size:var(--xs);font-weight:600;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:1.5rem;">En números</p>
-          <div style="display:flex;flex-direction:column;gap:2rem;">
-            <div style="border-bottom:1px solid rgba(255,255,255,0.10);padding-bottom:2rem;">
-              <div style="font-family:var(--font-serif);font-size:3.5rem;font-weight:600;color:var(--teal);line-height:1;">+200</div>
-              <p style="font-size:var(--sm);color:rgba(247,244,239,0.65);margin-top:0.5rem;">Líderes y profesionales acompañados en procesos de evolución</p>
+      <div class="reveal-r">
+        <div style="background:var(--navy);border-radius:var(--radius-lg);padding:clamp(2rem,4vw,2.75rem);color:var(--white);">
+          <p style="font-size:var(--xs);font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--teal);margin-bottom:1.5rem;">En números</p>
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <div style="border-bottom:1px solid rgba(255,255,255,0.09);padding-block:1.75rem;">
+              <div style="font-family:var(--font-serif);font-size:3rem;font-weight:600;color:var(--teal);line-height:1;">+200</div>
+              <p style="font-size:var(--sm);color:rgba(247,244,239,0.58);margin-top:0.4rem;">Líderes y profesionales acompañados en procesos de evolución</p>
             </div>
-            <div style="border-bottom:1px solid rgba(255,255,255,0.10);padding-bottom:2rem;">
-              <div style="font-family:var(--font-serif);font-size:3.5rem;font-weight:600;color:var(--coral);line-height:1;">+50</div>
-              <p style="font-size:var(--sm);color:rgba(247,244,239,0.65);margin-top:0.5rem;">Organizaciones transformadas a través del framework</p>
+            <div style="border-bottom:1px solid rgba(255,255,255,0.09);padding-block:1.75rem;">
+              <div style="font-family:var(--font-serif);font-size:3rem;font-weight:600;color:var(--copper);line-height:1;">+50</div>
+              <p style="font-size:var(--sm);color:rgba(247,244,239,0.58);margin-top:0.4rem;">Organizaciones transformadas a través del framework</p>
             </div>
-            <div>
-              <div style="font-family:var(--font-serif);font-size:3.5rem;font-weight:600;color:var(--white);line-height:1;">12</div>
-              <p style="font-size:var(--sm);color:rgba(247,244,239,0.65);margin-top:0.5rem;">Países donde hemos generado impacto</p>
+            <div style="padding-block:1.75rem 0;">
+              <div style="font-family:var(--font-serif);font-size:3rem;font-weight:600;color:var(--white);line-height:1;">12</div>
+              <p style="font-size:var(--sm);color:rgba(247,244,239,0.58);margin-top:0.4rem;">Países donde hemos generado impacto</p>
             </div>
           </div>
         </div>
@@ -195,7 +197,7 @@
 <!-- CTA -->
 <section class="cta-dark section">
   <div class="cta-dark__bg" aria-hidden="true">
-    <svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="250" stroke="#3E8E8A" stroke-width="1"/><circle cx="300" cy="300" r="170" stroke="#E58D73" stroke-width="0.5"/></svg>
+    <svg viewBox="0 0 600 600" fill="none"><circle cx="300" cy="300" r="250" stroke="#4FAEAA" stroke-width="1"/><circle cx="300" cy="300" r="170" stroke="#B87333" stroke-width="0.5"/></svg>
   </div>
   <div class="wrap">
     <div class="cta-dark__content reveal">
@@ -206,7 +208,7 @@
         <a href="contact.html" class="btn btn--light">Escribinos
           <svg viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </a>
-        <a href="services.html" class="btn btn--ghost" style="color:rgba(247,244,239,0.7);">Ver servicios</a>
+        <a href="services.html" class="btn btn--ghost" style="color:rgba(247,244,239,0.65);">Ver servicios</a>
       </div>
     </div>
   </div>
@@ -219,38 +221,18 @@
     <div class="footer__inner">
       <div class="footer__brand">
         <span class="footer__wordmark">SILVORA</span>
-        <span class="footer__tagline">Reinvención · Creación · Evolución</span>
+        <span class="footer__tagline" data-i18n="footer.tagline">Reinvención · Creación · Evolución</span>
         <p class="footer__desc">Framework estratégico para evolucionar el valor humano en la era de la IA y la longevidad.</p>
       </div>
-      <div class="footer__col">
-        <h4>Páginas</h4>
-        <ul>
-          <li><a href="about.html">Nosotros</a></li>
-          <li><a href="services.html">Servicios</a></li>
-          <li><a href="lab.html">Human Value Lab</a></li>
-          <li><a href="speaking.html">Speaking</a></li>
-        </ul>
-      </div>
-      <div class="footer__col">
-        <h4>Contacto</h4>
-        <ul>
-          <li><a href="contact.html">Escribinos</a></li>
-          <li><a href="https://www.linkedin.com/company/silvoratalent" target="_blank" rel="noopener">LinkedIn</a></li>
-          <li><a href="mailto:hola@silvora.com">hola@silvora.com</a></li>
-        </ul>
-      </div>
+      <div class="footer__col"><h4>Páginas</h4><ul><li><a href="about.html">Nosotros</a></li><li><a href="services.html">Servicios</a></li><li><a href="lab.html">Human Value Lab</a></li><li><a href="speaking.html">Speaking</a></li></ul></div>
+      <div class="footer__col"><h4>Contacto</h4><ul><li><a href="contact.html">Escribinos</a></li><li><a href="https://www.linkedin.com/company/silvoratalent" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="mailto:hola@silvora.com">hola@silvora.com</a></li></ul></div>
     </div>
     <div class="footer__bottom">
-      <p class="footer__rights">© 2025 Silvora. Todos los derechos reservados.</p>
-      <div class="footer__social">
-        <a href="https://www.linkedin.com/company/silvoratalent" target="_blank" rel="noopener" aria-label="LinkedIn">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-        </a>
-      </div>
+      <p class="footer__rights" data-i18n="footer.rights">© 2025 Silvora. Todos los derechos reservados.</p>
+      <div class="footer__social"><a href="https://www.linkedin.com/company/silvoratalent" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a></div>
     </div>
   </div>
 </footer>
-
 <script src="js/main.js"></script>
 </body>
 </html>
