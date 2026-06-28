@@ -1,0 +1,104 @@
+{
+  "nav": {
+    "logo_alt": "Silvora · Human Value Evolution",
+    "dimensions": "Dimensiones",
+    "who": "¿A quién acompañamos?",
+    "contact": "Contacto",
+    "lang_toggle": "EN"
+  },
+  "hero": {
+    "eyebrow": "Human Value Evolution Lab",
+    "headline_1": "Evolucionamos",
+    "headline_2": "el valor humano.",
+    "headline_3": "Impulsamos",
+    "headline_4": "el futuro.",
+    "sub": "Un marco estratégico para evolucionar el valor humano en la era de la inteligencia artificial y la longevidad.",
+    "cta_primary": "Ver las dimensiones",
+    "cta_secondary": "¿A quién acompañamos?"
+  },
+  "intro": {
+    "label": "El recorrido",
+    "title": "No se trata solo de adaptarse al futuro,",
+    "title_accent": "sino de diseñarlo.",
+    "body": "Silvora acompaña a personas, equipos y organizaciones a través de un recorrido estructurado en cinco dimensiones que integra comprensión del mundo, desarrollo de capacidades, inteligencia artificial, bienestar y diseño de valor."
+  },
+  "dimensions": {
+    "label": "Las cinco dimensiones",
+    "title": "Un framework para evolucionar",
+    "items": [
+      {
+        "number": "01",
+        "name": "World Evolution",
+        "verb": "Entender",
+        "question": "¿Qué está cambiando y qué impacto tendrá?",
+        "body": "Comprender las fuerzas que transforman el mundo del trabajo, la economía y la sociedad para anticipar escenarios y tomar mejores decisiones."
+      },
+      {
+        "number": "02",
+        "name": "Human Skills Evolution",
+        "verb": "Desarrollar",
+        "question": "¿Qué capacidades humanas serán más relevantes?",
+        "body": "Adaptabilidad, pensamiento crítico, aprendizaje continuo, liderazgo, comunicación e influencia para navegar contextos de creciente complejidad."
+      },
+      {
+        "number": "03",
+        "name": "AI Capability Evolution",
+        "verb": "Amplificar",
+        "question": "¿Cómo trabajar mejor con inteligencia artificial?",
+        "body": "IA aplicada al aprendizaje, productividad, gestión del conocimiento, toma de decisiones y colaboración humano–IA para potenciar el desempeño."
+      },
+      {
+        "number": "04",
+        "name": "Personal Care Evolution",
+        "verb": "Sostener",
+        "question": "¿Cómo sostener el rendimiento y el bienestar?",
+        "body": "La sostenibilidad humana como ventaja estratégica. Energía, salud mental, economía del cuidado y longevidad profesional."
+      },
+      {
+        "number": "05",
+        "name": "Human Value Design",
+        "verb": "Diseñar",
+        "question": "¿Cómo crear valor diferencial en la era de la IA?",
+        "body": "Reinventar carreras, organizaciones y modelos de liderazgo para generar valor sostenible en un contexto de transformación permanente."
+      }
+    ],
+    "plus": {
+      "number": "06",
+      "name": "Human Value Evolution Plan",
+      "verb": "Integrar",
+      "body": "Síntesis e integración de las cinco dimensiones en una hoja de ruta personal y organizacional accionable."
+    }
+  },
+  "values": {
+    "label": "Valores",
+    "items": [
+      { "name": "Evolución", "desc": "Progreso continuo hacia adelante." },
+      { "name": "Sabiduría", "desc": "La experiencia que transforma." },
+      { "name": "Adaptabilidad", "desc": "Nos reinventamos y evolucionamos." },
+      { "name": "Liderazgo", "desc": "Dirección clara. Impacto real." },
+      { "name": "Potencial Humano", "desc": "Crecimiento ilimitado. Valor permanente." }
+    ]
+  },
+  "who": {
+    "label": "¿A quién acompañamos?",
+    "title": "Personas, equipos y organizaciones que quieren evolucionar.",
+    "body": "Acompañamos a líderes, profesionales en transición, equipos de alto rendimiento, organizaciones en transformación e instituciones que buscan generar impacto duradero.",
+    "audiences": [
+      { "name": "Personas", "desc": "Profesionales que buscan reinventarse y generar nuevo valor en la era de la IA y la longevidad." },
+      { "name": "Equipos", "desc": "Grupos que necesitan desarrollar capacidades colectivas para operar en entornos de alta complejidad." },
+      { "name": "Organizaciones", "desc": "Empresas que quieren evolucionar su cultura, su talento y sus modelos de trabajo." },
+      { "name": "Instituciones", "desc": "Organismos gubernamentales y del sector público comprometidos con el desarrollo del capital humano." }
+    ]
+  },
+  "cta": {
+    "title": "Empezá tu evolución.",
+    "body": "Comenzá con el Talent Maturity Assessment para ubicar tu punto de partida.",
+    "primary": "Abrir assessment",
+    "secondary": "Contactar"
+  },
+  "footer": {
+    "tagline": "Reinvención · Creación · Evolución",
+    "linkedin": "LinkedIn",
+    "rights": "© 2025 Silvora. Todos los derechos reservados."
+  }
+}
