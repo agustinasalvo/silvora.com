@@ -996,3 +996,14 @@ body.menu-open { overflow: hidden !important; touch-action: none; }
   .hve-page-image { border-radius: 1.25rem; }
   .hve-page-image img { height: auto; }
 }
+
+/* Final fixes: center about vision copy and use robust relative HVE image paths */
+.vision-copy {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+@media (min-width: 769px) {
+  .vision-copy { min-height: 320px; }
+}
