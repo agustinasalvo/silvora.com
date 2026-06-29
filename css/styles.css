@@ -47,8 +47,8 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 /* ── Navigation ── */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
-  padding-block: 1rem;
-  transition: background var(--t) var(--ease), padding var(--t) var(--ease), box-shadow var(--t) var(--ease);
+  padding-block: 0.75rem;
+  transition: background var(--t) var(--ease), box-shadow var(--t) var(--ease);
 }
 /* On dark hero: links are light */
 .nav--dark .nav__link,
@@ -959,4 +959,40 @@ body.menu-open { overflow: hidden !important; touch-action: none; }
     min-height: auto !important;
     padding-top: 7rem !important;
   }
+}
+
+
+/* Final fixed desktop nav height and HVE page image placement */
+@media (min-width: 769px) {
+  .nav { padding-block: 0.75rem !important; }
+  .nav.scrolled { padding-block: 0.75rem !important; }
+}
+.page-hero--hve {
+  min-height: min(560px, 62vh) !important;
+  justify-content: flex-end !important;
+}
+.page-hero--hve .wrap {
+  display: block !important;
+  max-width: 1180px;
+}
+.page-hero--hve .page-hero__lead { max-width: 640px; }
+.hve-image-section {
+  background: var(--white);
+  padding: clamp(2.5rem, 6vw, 5rem) 0;
+}
+.hve-page-image {
+  border-radius: 2rem;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 24px 60px rgba(31,42,68,0.16);
+}
+.hve-page-image img {
+  width: 100%;
+  height: clamp(360px, 54vw, 680px);
+  object-fit: cover;
+  object-position: center;
+}
+@media (max-width: 768px) {
+  .hve-page-image { border-radius: 1.25rem; }
+  .hve-page-image img { height: auto; }
 }
