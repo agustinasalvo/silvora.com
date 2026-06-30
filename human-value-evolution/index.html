@@ -15,6 +15,93 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="/silvora.com/css/styles.css"/>
+<style id="hve-hero-hotfix">
+
+/* HVE hero layout final: image inside the blue banner on desktop */
+@media (min-width: 901px) {
+  .page-hero--hve {
+    min-height: clamp(620px, 82vh, 780px) !important;
+    padding-top: 118px !important;
+    padding-bottom: clamp(4rem, 7vw, 6rem) !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    overflow: hidden !important;
+  }
+  .page-hero--hve .wrap {
+    width: 100% !important;
+    max-width: 1280px !important;
+    display: grid !important;
+    grid-template-columns: minmax(320px, 0.82fr) minmax(460px, 1.18fr) !important;
+    grid-template-rows: auto auto auto !important;
+    align-items: center !important;
+    column-gap: clamp(2rem, 4.5vw, 5rem) !important;
+  }
+  .page-hero--hve .page-hero__eyebrow {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+    align-self: end !important;
+  }
+  .page-hero--hve .page-hero__title {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    align-self: center !important;
+  }
+  .page-hero--hve .page-hero__lead {
+    grid-column: 1 !important;
+    grid-row: 3 !important;
+    align-self: start !important;
+    max-width: 520px !important;
+  }
+  .page-hero--hve .hve-hero-visual {
+    grid-column: 2 !important;
+    grid-row: 1 / 4 !important;
+    align-self: center !important;
+    width: 100% !important;
+    aspect-ratio: 16 / 9 !important;
+    max-height: 520px !important;
+    margin: 0 !important;
+    border-radius: 28px !important;
+    overflow: hidden !important;
+    border: 1px solid rgba(242,232,218,.58) !important;
+    box-shadow: 0 30px 80px rgba(0,0,0,.25) !important;
+    background: rgba(255,255,255,.04) !important;
+  }
+  .page-hero--hve .hve-hero-visual img {
+    width: 100% !important;
+    height: 100% !important;
+    display: block !important;
+    object-fit: cover !important;
+    object-position: center !important;
+  }
+}
+@media (max-width: 900px) {
+  .page-hero--hve {
+    min-height: auto !important;
+    padding-top: 7.5rem !important;
+    padding-bottom: 4rem !important;
+  }
+  .page-hero--hve .wrap {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+  }
+  .page-hero--hve .hve-hero-visual {
+    width: 100% !important;
+    aspect-ratio: 16 / 10 !important;
+    border-radius: 20px !important;
+    overflow: hidden !important;
+    margin: .5rem 0 0 !important;
+  }
+  .page-hero--hve .hve-hero-visual img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: cover !important;
+  }
+}
+
+</style>
+
 </head>
 <body>
 
